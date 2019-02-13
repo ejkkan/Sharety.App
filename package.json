@@ -1,0 +1,34 @@
+{
+  "name": "Sharety",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.27",
+    "apollo-cache-persist": "^0.1.1",
+    "apollo-client-preset": "^1.0.8",
+    "apollo-link-context": "^1.0.14",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
+    "react": "16.6.3",
+    "react-apollo": "^2.4.1",
+    "react-native": "0.58.4",
+    "react-native-gesture-handler": "^1.0.15",
+    "react-native-material-shadows": "0.0.2",
+    "react-navigation": "^3.2.0",
+    "react-navigation-transitions": "^1.0.8"
+  },
+  "devDependencies": {
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "24.1.0",
+    "jest": "24.1.0",
+    "metro-react-native-babel-preset": "0.51.1",
+    "react-test-renderer": "16.6.3"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
