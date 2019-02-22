@@ -17,7 +17,6 @@ import {
 
 import gql from "graphql-tag";
 import { Mutation, Query } from "react-apollo";
-import RNMaterialShadows from "react-native-material-shadows";
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
@@ -25,13 +24,11 @@ const SIGNIN_MUTATION = gql`
   }
 `;
 
-
 const LOGIN = gql`
   mutation LOGIN($token: String!) {
     login(token: $token) @client
   }
 `;
-
 
 const GET_USER_QUERY = gql`
   query GET_USER_QUERY {
@@ -44,23 +41,21 @@ const GET_USER_QUERY = gql`
   }
 `;
 
-type Props = {};
-export default class Login extends Component<Props> {
+export default class Login extends Component {
   state = {
     password: "",
     email: ""
   };
+  
   saveToState = (key, value) => {
     this.setState({ [key]: value });
   };
 
   login = async (signin, login) => {
     let hej = await signin();
-    console.log("hej", hej);
     login({ variables:{token: hej.data.signin}});
   };
   render() {
-    //console.log(this.state);
     return (
       <Mutation
         mutation={SIGNIN_MUTATION}
@@ -69,7 +64,6 @@ export default class Login extends Component<Props> {
       >
         {(signin, { error, loading }) => (
         <Mutation
-            variables={{email:'a'}}
             mutation={LOGIN}
         >
         {(login, { error, loading }) => (

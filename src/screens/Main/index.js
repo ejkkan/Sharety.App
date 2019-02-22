@@ -10,7 +10,7 @@ import {
 
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import AuthCheck from '../../Components/authCheck'
+import AuthCheck from '../../Components/AuthCheck'
 //import RNMaterialShadows from "react-native-material-shadows";
 import Subscribe from '../../Components/sub-button'
 
@@ -25,41 +25,23 @@ const SINGLE_CHARITY_QUERY = gql`
   }
 `;
 
-const GET_USER_QUERY = gql`
-  query GET_USER_QUERY {
-    me {
+const CHARITIES_QUERY = gql`
+  query CHARITIES_QUERY {
+    charities {
       id
+      title
+      description
+      largeImage
     }
   }
 `;
 
+
 export default class Page extends Component<Props> {
-  static navigationOptions = ({ navigation }) => {
-    const screenNumber = navigation.state.params
-      ? navigation.state.params.screenNumber
-      : 0;
-    const headerColor = headerColors[screenNumber % headerColors.length];
-    return {
-      title: `I am screen ${screenNumber}`,
-      headerStyle: {
-        backgroundColor: headerColor,
-        height: 85
-      },
-      headerTitleStyle: {
-        color: "white"
-      }
-    };
-  };
   render() {
     return (
-      <AuthCheck>
       <Query
-        query={SINGLE_CHARITY_QUERY}
-        //pollInterval={5000}
-        refetchQueries={[{ query: GET_USER_QUERY }]}
-        variables={{
-          id: "cjo5sliaz5m240a426x9mdgf4"
-        }}
+        query={CHARITIES_QUERY}
       >
         {({ data, loading, error, client }) => {
           console.log("data, loading, error", data, loading, error);
@@ -71,18 +53,16 @@ export default class Page extends Component<Props> {
             );
           return (
             <View style={styles.container}>
-              <Text style={styles.welcome}>{data.charity.title}</Text>
-
-              <TouchableOpacity
-                style={styles.buttonContainer}
-                onPress={() => {
-                  this.props.navigation.navigate("Splash");
-                }}
-              >
-                <Text style={styles.buttonText}>MAIN</Text>
-              </TouchableOpacity>
-              <Subscribe id={data.charity.id}/>
-              {/* <RNMaterialShadows
+              <Text style={styles.welcome}>{data.charities[1].title}</Text>
+              <Subscribe id={data.charities[0].id}/>
+            </View>
+          );
+        }}
+      </Query>
+    );
+  }
+}
+{/* <RNMaterialShadows
                 shadowOffsetX={14}
                 shadowOffsetY={10}
                 shadowAlpha={40}
@@ -97,14 +77,6 @@ export default class Page extends Component<Props> {
                   style={styles.image}
                 />
               </RNMaterialShadows> */}
-            </View>
-          );
-        }}
-      </Query>
-      </AuthCheck>
-    );
-  }
-}
 
 const styles = StyleSheet.create({
   container: {

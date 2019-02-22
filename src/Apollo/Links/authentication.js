@@ -1,0 +1,22 @@
+import {
+    AsyncStorage,
+} from "react-native";
+import { setContext } from 'apollo-link-context';
+
+const fetchTokenAsync = () =>
+    new Promise((resolve, reject) =>
+        resolve(AsyncStorage.getItem('token')));
+
+const authLink = setContext(operation =>
+    fetchTokenAsync().then(token => {
+        return {
+            headers: {
+                authorization: token || null,
+            },
+        };
+    })
+);
+ 
+export {
+    authLink
+}

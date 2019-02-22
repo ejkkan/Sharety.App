@@ -1,7 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-//import PropTypes from "prop-types";
 
 const GET_USER_QUERY = gql`
   query GET_USER_QUERY {
@@ -13,15 +12,11 @@ const GET_USER_QUERY = gql`
     }
   }
 `;
-//pollInterval={10000}
-const User = props => (
+
+const GetUser = props => (
   <Query {...props} query={GET_USER_QUERY}>
     {payload => props.children(payload)}
   </Query>
 );
 
-// User.propTypes = {
-//   children: PropTypes.func.isRequired
-// };
-
-export default User;
+export default GetUser;

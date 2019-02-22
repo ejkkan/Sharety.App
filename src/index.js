@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 
-import AppNavigator from "./screens";
+import AppNavigator from "./Screens";
 import Navigation from './utils/Navigation';
 
 export default class App extends Component {
