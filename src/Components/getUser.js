@@ -15,7 +15,7 @@ const GET_USER_QUERY = gql`
 `;
 //pollInterval={10000}
 const User = props => (
-  <Query {...props} pollInterval={10000} query={GET_USER_QUERY}>
+  <Query {...props} query={GET_USER_QUERY}>
     {payload => props.children(payload)}
   </Query>
 );

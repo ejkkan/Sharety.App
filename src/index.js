@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View } from "react-native";
 
 import AppNavigator from "./screens";
+import Navigation from './utils/Navigation';
 
 export default class App extends Component {
   render() {
-    return <AppNavigator />;
+    return <AppNavigator ref={navigatorRef => {
+      Navigation.setTopLevelNavigator(navigatorRef);
+    }}/>;
   }
 }
 

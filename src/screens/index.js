@@ -3,7 +3,8 @@ import {
   createAppContainer,
   createStackNavigator,
   createMaterialTopTabNavigator,
-  createDrawerNavigator
+  createDrawerNavigator,
+  createSwitchNavigator
 } from "react-navigation";
 import {
   AsyncStorage,
@@ -18,13 +19,19 @@ import Main from "./Main";
 import Login from "./Login";
 import Splash from "./Splash";
 
-import ApolloClient from "apollo-boost";
+import ApolloClient from "apollo-client";
 import { ApolloProvider } from "react-apollo";
-import { createHttpLink } from "apollo-link-http";
-import { setContext } from "apollo-link-context";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { onError } from 'apollo-link-error';
+import { HttpLink } from 'apollo-link-http';
+import { ApolloLink, Observable } from 'apollo-link';
+import { withClientState } from 'apollo-link-state';
 
-const httpLink = createHttpLink({
+
+import Navigation from '../utils/Navigation';
+
+
+const httpLink = new HttpLink({
   uri: "http://localhost:4444/graphql",
   credentials: "include"
 });
@@ -34,33 +41,57 @@ const uri =
     ? "http://10.0.2.2:4444/graphql"
     : "http://localhost:4444/graphql";
 
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  //const token = localStorage.getItem("token");
-  // return the headers to the context so httpLink can read them
-  console.log("AUTHLINK", token.cache.store);
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : ""
-    }
-  };
+
+const request = async (operation) => {
+  console.log('request', operation)
+};
+
+const requestLink = new ApolloLink((operation, forward) => {
+  return forward(operation).map(response => {
+    console.log('response', response)
+    return response;
+  });
 });
 
-const cache = new InMemoryCache();
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+    Navigation.navigate("Login")
+  console.log('graphQLErrors, networkError',graphQLErrors, networkError)
+})
+
+const cache = new InMemoryCache()
+
+const localQueryLink = withClientState({
+  cache,
+  resolvers: {
+    Mutation: {
+      login: (_, {token} , { cache }) => {
+        console.log('token');
+        console.log('token', token)
+        //AsyncStorage.setItem('token')
+        Navigation.navigate('Main')
+      }
+    }
+  },
+  defaults: {
+    token: "hej",
+    hejsan: "ijf",
+  }
+})
+const link = ApolloLink.from([localQueryLink, errorLink, requestLink, httpLink]);
 
 const localClient = new ApolloClient({
-  uri,
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
-  request: operation => {
-    operation.setContext({
-      fetchOptions: {
-        credentials: "include"
-      }
-      //headers
-    });
-  }
+  //uri,
+  cache,
+  link,
+  // request: operation => {
+  //   operation.setContext({
+  //     fetchOptions: {
+  //       credentials: "include"
+  //     }
+  //     //headers
+  //   });
+  // }
 });
 
 const withProvider = (Component, client = localClient) => {
@@ -120,7 +151,7 @@ const SplashStack = createStackNavigator(
   }
 );
 
-const TabNavigator = createMaterialTopTabNavigator(
+const TabNavigator = createStackNavigator(
   {
     Main: AuthStack,
     Splash: SplashStack
@@ -135,12 +166,12 @@ const TabNavigator = createMaterialTopTabNavigator(
 );
 const Root = createStackNavigator(
   {
-    Splash: { screen: SplashStack },
-    Login: { screen: LoginStack },
-    Auth: { screen: TabNavigator }
+    Splash: SplashStack ,
+    Login:  LoginStack,
+    Auth: TabNavigator
   },
   {
-    initialRouteName: "Splash",
+    initialRouteName: "Login",
     transitionConfig: () => fadeIn(700),
     headerMode: "none"
   }

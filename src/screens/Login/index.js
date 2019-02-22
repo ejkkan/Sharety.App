@@ -21,13 +21,17 @@ import RNMaterialShadows from "react-native-material-shadows";
 
 const SIGNIN_MUTATION = gql`
   mutation SIGNIN_MUTATION($email: String!, $password: String!) {
-    signin(email: $email, password: $password) {
-      id
-      email
-      name
-    }
+    signin(email: $email, password: $password)
   }
 `;
+
+
+const LOGIN = gql`
+  mutation LOGIN($token: String!) {
+    login(token: $token) @client
+  }
+`;
+
 
 const GET_USER_QUERY = gql`
   query GET_USER_QUERY {
@@ -50,9 +54,10 @@ export default class Login extends Component<Props> {
     this.setState({ [key]: value });
   };
 
-  login = async (signin, loggedIn) => {
+  login = async (signin, login) => {
     let hej = await signin();
     console.log("hej", hej);
+    login({ variables:{token: hej.data.signin}});
   };
   render() {
     //console.log(this.state);
@@ -63,6 +68,11 @@ export default class Login extends Component<Props> {
         refetchQueries={[{ query: GET_USER_QUERY }]}
       >
         {(signin, { error, loading }) => (
+        <Mutation
+            variables={{email:'a'}}
+            mutation={LOGIN}
+        >
+        {(login, { error, loading }) => (
           <View style={styles.container}>
             <TextInput
               style={styles.input}
@@ -88,11 +98,13 @@ export default class Login extends Component<Props> {
 
             <TouchableOpacity
               style={styles.buttonContainer}
-              onPress={() => this.login(signin)}
+                  onPress={() => this.login(signin, login)}
             >
               <Text style={styles.buttonText}>LOGIN</Text>
             </TouchableOpacity>
           </View>
+        )}
+        </Mutation>
         )}
       </Mutation>
     );

@@ -10,8 +10,9 @@ import {
 
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-
-import RNMaterialShadows from "react-native-material-shadows";
+import AuthCheck from '../../Components/authCheck'
+//import RNMaterialShadows from "react-native-material-shadows";
+import Subscribe from '../../Components/sub-button'
 
 const SINGLE_CHARITY_QUERY = gql`
   query SINGLE_CHARITY_QUERY($id: ID!) {
@@ -51,6 +52,7 @@ export default class Page extends Component<Props> {
   };
   render() {
     return (
+      <AuthCheck>
       <Query
         query={SINGLE_CHARITY_QUERY}
         //pollInterval={5000}
@@ -74,12 +76,13 @@ export default class Page extends Component<Props> {
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => {
-                  this.props.navigation.navigate("Login");
+                  this.props.navigation.navigate("Splash");
                 }}
               >
-                <Text style={styles.buttonText}>LOGIN</Text>
+                <Text style={styles.buttonText}>MAIN</Text>
               </TouchableOpacity>
-              <RNMaterialShadows
+              <Subscribe id={data.charity.id}/>
+              {/* <RNMaterialShadows
                 shadowOffsetX={14}
                 shadowOffsetY={10}
                 shadowAlpha={40}
@@ -93,11 +96,12 @@ export default class Page extends Component<Props> {
                   elevation={5}
                   style={styles.image}
                 />
-              </RNMaterialShadows>
+              </RNMaterialShadows> */}
             </View>
           );
         }}
       </Query>
+      </AuthCheck>
     );
   }
 }

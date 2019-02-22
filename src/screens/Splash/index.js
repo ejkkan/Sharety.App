@@ -7,7 +7,7 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
@@ -23,12 +23,19 @@ export default class Page extends Component<Props> {
           if (loading)
             return (
               <View style={styles.container}>
-                <Text style={styles.welcome}>SPLASH</Text>
+
+                <TouchableOpacity
+                  style={styles.buttonContainer}
+                  onPress={() => {
+                    this.props.navigation.navigate("MAIN");
+                  }}
+                >
+                  <Text style={styles.buttonText}>SPLASH</Text>
+                </TouchableOpacity>
               </View>
             );
-          if (!data.me) return this.props.navigation.navigate("Login");
-          this.props.navigation.navigate("Auth");
-          return null;
+          //if (!data.me) return this.props.navigation.navigate("Login");
+          //return this.props.navigation.navigate("Auth");
         }}
       </GetUser>
     );
