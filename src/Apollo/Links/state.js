@@ -1,28 +1,24 @@
-import {
-    AsyncStorage,
-} from "react-native";
-import { withClientState } from 'apollo-link-state';
+import { AsyncStorage } from "react-native";
+import { withClientState } from "apollo-link-state";
 
-import Navigation from '../../utils/Navigation';
+import Navigation from "../../utils/Navigation";
 
 const Mutation = {
-    login: (_, { token }, { cache }) => {
-        console.log('local state')
-        AsyncStorage.setItem('token', token)
-        Navigation.navigate('Main');
-    }
-}
+  login: (_, { token }, { cache }) => {
+    AsyncStorage.setItem("token", token);
+    Navigation.navigate("Main");
+  }
+};
 
-const localLink = cache => withClientState({
+const localLink = cache =>
+  withClientState({
     cache,
-        resolvers: {
-            Mutation: Mutation
-        },
+    resolvers: {
+      Mutation: Mutation
+    },
     defaults: {
-        token: null,
+      token: null
     }
-})
+  });
 
-export {
-    localLink
-}
+export { localLink };
