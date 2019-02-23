@@ -1,103 +1,105 @@
-import React, { Component } from "react";
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image
-} from "react-native";
+import React, { Component } from 'react';
+import {TouchableWithoutFeedback, StyleSheet, View, TouchableOpacity, Text, Dimensions, Animated, ScrollView } from 'react-native';
+import Interactable from 'react-native-interactable';
+const { width, height }  = Dimensions.get('window')
 
-import gql from "graphql-tag";
-import { Query } from "react-apollo";
-import AuthCheck from '../../Components/AuthCheck'
-//import RNMaterialShadows from "react-native-material-shadows";
-import Subscribe from '../../Components/sub-button'
+import SideMenu from './SideMenu'
+import Shadow from '../../Components/Shadow'
 
-const SINGLE_CHARITY_QUERY = gql`
-  query SINGLE_CHARITY_QUERY($id: ID!) {
-    charity(where: { id: $id }) {
-      id
-      title
-      description
-      largeImage
-    }
+
+export default class HandleRelayout extends Component {
+  constructor() {
+    super();
+    this.state = {
+      collapsed: false,
+    };
+    this._deltaX = new Animated.Value(0);
   }
-`;
-
-const CHARITIES_QUERY = gql`
-  query CHARITIES_QUERY {
-    charities {
-      id
-      title
-      description
-      largeImage
-    }
-  }
-`;
-
-
-export default class Page extends Component<Props> {
+  onSnapStart = event => {
+  console.log('onSnapStart', event);
+  };
+  onSnap = event => {
+    console.log('onSnap', event);
+  };
   render() {
+    console.log('_deltaX',this._deltaX)
+          // this._deltaX.interpolate({
+      //     inputRange: [-230, -230, -180, -180],
+      //     outputRange: [1, 1, 0, 0]
+      //   })
+
     return (
-      <Query
-        query={CHARITIES_QUERY}
-      >
-        {({ data, loading, error, client }) => {
-          console.log("data, loading, error", data, loading, error);
-          if (loading)
-            return (
-              <View style={styles.container}>
-                <Text style={styles.welcome}>Loading...</Text>
-              </View>
-            );
-          return (
-            <View style={styles.container}>
-              <Text style={styles.welcome}>{data.charities[1].title}</Text>
-              <Subscribe id={data.charities[0].id}/>
+      <View>
+        <Interactable.View
+          style={{
+            width: width * 1.70,
+            height
+          }}
+          horizontalOnly={true}
+          animatedNativeDriver={true}
+          gravityPoints={[{x: -width * 0.70, strength: 3000, falloff: 0, damping:0.7 }]}
+          animatedValueX={this._deltaX}
+          snapPoints={[{x: -width * 0.70},{x: 0}]}>
+          <View style={styles.page}>
+            <View style={styles.sideMenu}>
+              <SideMenu 
+                translateX={this._deltaX}
+              />
             </View>
-          );
-        }}
-      </Query>
+            <View style={{flexDirection:'column', flex:1}}>
+            <ScrollView contentContainerStyle={styles.mainContent}>
+                <View style={{width,height, alignItems:'center', justifyContent:'center'}}>
+                    <Shadow>
+                      <View style={styles.card}/>
+                    </Shadow>
+                </View>
+                <View style={styles.card}/>
+                <View style={styles.card}/>
+               <View style={styles.card}/>
+            </ScrollView>
+            </View>
+          </View>
+        </Interactable.View>
+        <View style={{position:'absolute', top:30,alignSelf:'center', height:70,width:70,borderRadius:35, backgroundColor:'red'}}></View>
+      </View>
+      
     );
   }
+  onChangeLayoutPress() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    })
+  }
 }
-{/* <RNMaterialShadows
-                shadowOffsetX={14}
-                shadowOffsetY={10}
-                shadowAlpha={40}
-                style={{ width: 150, height: 50 }}
-                padding={10}
-              >
-                <Image
-                  source={
-                    "https://images.all-free-download.com/images/graphiclarge/nice_flowers_201855.jpg"
-                  }
-                  elevation={5}
-                  style={styles.image}
-                />
-              </RNMaterialShadows> */}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "white"
+    backgroundColor: 'white',
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
+  page: {
+    width: width * 1.70,
+    flex:1,
+    flexDirection:'row',
   },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+  sideMenu: {
+    width: width * 0.70,
+    height: 180,
+    height,
   },
-  buttonContainer: {
-    backgroundColor: "#2980b6",
-    paddingVertical: 15,
-    width: 150
+  mainContent:{
+    width,
+    alignItems:'center'
+  },
+  card: {
+    width: 300,
+    height: 380,
+    backgroundColor: '#542790',
+    borderRadius: 8,
+    marginTop:20
+  },
+  label: {
+    textAlign: 'center',
+    fontSize: 24
   }
 });

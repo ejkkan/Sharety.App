@@ -22,7 +22,10 @@
     "react-apollo": "^2.4.1",
     "react-native": "0.58.4",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-interactable": "^0.1.10",
+    "react-native-linear-gradient": "^2.5.3",
     "react-native-material-shadows": "0.0.2",
+    "react-native-snap-carousel": "^3.7.5",
     "react-navigation": "^3.2.0",
     "react-navigation-transitions": "^1.0.8"
   },
