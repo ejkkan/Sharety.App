@@ -4,7 +4,8 @@ import {
   View,
   Dimensions,
   Animated,
-  ScrollView
+  ScrollView,
+  Vibration
 } from "react-native";
 import Interactable from "react-native-interactable";
 const { width, height } = Dimensions.get("window");
@@ -43,6 +44,7 @@ export default class Main extends Component {
     }).start();
 
   onSnap = phase => {
+    Vibration.vibrate(200);
     if (phase.nativeEvent.index === 0) {
       this.backIcon.show();
       this.setState({ scrollable: true });
@@ -87,6 +89,7 @@ export default class Main extends Component {
                 onSnap={this.onSnap}
                 animatedValueX={this._deltaX}
                 snapPoints={[{ x: -width * 0.7 }, { x: 0 }]}
+                onSnapStart={() => console.log("spdiojfhs")}
               >
                 <View style={styles.page}>
                   <View style={styles.sideMenu}>

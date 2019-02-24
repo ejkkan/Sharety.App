@@ -65,8 +65,8 @@ export default class MyCarousel extends Component {
     );
   }
   getBatchedItems = (batchAmount, index, items) => {
-    const zeroOffset = index + 1;
-    const calc = zeroOffset * batchAmount;
+    const offset = index + 1;
+    const calc = offset * batchAmount;
     const last = calc - 1;
     const first = calc - batchAmount;
 

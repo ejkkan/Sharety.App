@@ -9,7 +9,8 @@ class SideMenu extends Component {
   state = {
     text1: "Sharety",
     text2: "",
-    text3: ""
+    text3: "",
+    width: 75
   };
   componentDidMount() {
     this.show();
@@ -34,8 +35,9 @@ class SideMenu extends Component {
     setTimeout(() => {
       this.setState({
         // text1: "Sharety",
-        text3: "Charity made",
-        text2: "for You"
+        // width: 91,
+        text3: "Charity made for",
+        text2: "You"
       });
     }, 9000);
   }
@@ -85,13 +87,13 @@ class SideMenu extends Component {
               color="black"
               effect={"scale"}
               height={25}
-              width={75}
+              width={this.state.width}
             >
               {this.state.text3}
             </RNMorphingText>
             <RNMorphingText
               animationDuration={2000}
-              size={25}
+              size={22}
               color="black"
               effect={"scale"}
               height={30}
