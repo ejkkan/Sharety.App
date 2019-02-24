@@ -2,11 +2,42 @@ import React, { Component } from "react";
 import { View, StyleSheet, Text, Animated, Dimensions } from "react-native";
 const { width } = Dimensions.get("window");
 import Icon from "react-native-vector-icons/MaterialIcons";
+import RNMorphingText from "react-native-morphing-text";
 
 class SideMenu extends Component {
   animation = new Animated.Value(0);
+  state = {
+    text1: "Sharety",
+    text2: "",
+    text3: ""
+  };
   componentDidMount() {
     this.show();
+    setTimeout(() => {
+      this.setState({
+        // text1: "Sharety",
+        text3: "Charity made"
+      });
+    }, 3000);
+    setTimeout(() => {
+      this.setState({
+        // text1: "Sharety",
+        text2: "Easy"
+      });
+    }, 3500);
+    setTimeout(() => {
+      this.setState({
+        // text1: "Sharety",
+        text2: "Fun"
+      });
+    }, 6000);
+    setTimeout(() => {
+      this.setState({
+        // text1: "Sharety",
+        text3: "Charity made",
+        text2: "for You"
+      });
+    }, 9000);
   }
 
   show = () =>
@@ -36,8 +67,38 @@ class SideMenu extends Component {
         ]}
       >
         <View>
-          <Text style={{ fontSize: 25, fontWeight: "bold" }}>Welcome to</Text>
-          <Text style={{ fontSize: 35, fontWeight: "bold" }}>Sharety</Text>
+          <RNMorphingText
+            animationDuration={5000}
+            size={40}
+            color="black"
+            effect={"scale"}
+            fontWeight={"900"}
+            height={45}
+            value={this.state.text1}
+          >
+            {this.state.text1}
+          </RNMorphingText>
+          <View style={{ flexDirection: "row" }}>
+            <RNMorphingText
+              animationDuration={2000}
+              size={11}
+              color="black"
+              effect={"scale"}
+              height={25}
+              width={75}
+            >
+              {this.state.text3}
+            </RNMorphingText>
+            <RNMorphingText
+              animationDuration={2000}
+              size={25}
+              color="black"
+              effect={"scale"}
+              height={30}
+            >
+              {this.state.text2}
+            </RNMorphingText>
+          </View>
         </View>
         <View style={styles.separator} />
         <View style={{ marginBottom: 10 }}>

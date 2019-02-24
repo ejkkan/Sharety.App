@@ -25,6 +25,7 @@
     "react-native-interactable": "^0.1.10",
     "react-native-linear-gradient": "^2.5.3",
     "react-native-material-shadows": "0.0.2",
+    "react-native-morphing-text": "0.0.4",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-vector-icons": "^6.3.0",
     "react-navigation": "^3.2.0",
