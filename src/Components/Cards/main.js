@@ -72,6 +72,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
     elevation: 20,
     alignItems: "center",
-    justifyContent: "space-between"
+    alignSelf: "center",
+    justifyContent: "space-between",
+    backgroundColor: "transparent"
   }
 });

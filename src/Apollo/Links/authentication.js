@@ -9,7 +9,8 @@ const authLink = setContext(operation =>
   fetchTokenAsync().then(token => {
     return {
       headers: {
-        authorization: token || null
+        authorization: token || null,
+        "user-agent": "dsfdsf"
       }
     };
   })

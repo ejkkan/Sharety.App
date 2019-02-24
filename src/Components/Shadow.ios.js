@@ -2,7 +2,12 @@ import React from "react";
 import { View } from "react-native";
 
 const Shadow = props => (
-  <View style={props.type ? config[props.type] : config.medium}>
+  <View
+    style={[
+      props.type ? config[props.type] : config.medium,
+      props.style ? { ...props.style } : {}
+    ]}
+  >
     {props.children}
   </View>
 );
@@ -11,7 +16,7 @@ const config = {
   small: {
     shadowColor: "#000",
     shadowOffset: { width: 5, height: 5 },
-    shadowOpacity: 0.7,
+    shadowOpacity: 0.3,
     shadowRadius: 5
   },
   medium: {

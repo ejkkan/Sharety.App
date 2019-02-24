@@ -113,11 +113,11 @@ export default class Main extends Component {
                           ]
                         }}
                       >
-                        <MainCard charity={data.charities[2]} />
+                        <MainCard charity={data.charities[1]} />
                       </Animated.View>
-                      <BigCarousel charities={data.charities} />
+                      <BigCarousel type="mixed" charities={data.charities} />
                       <BigCarousel charities={data.charities.slice(1, 3)} />
-                      <BigCarousel charities={[data.charities[3]]} />
+                      {/* <BigCarousel charities={[data.charities[3]]} /> */}
                     </ScrollView>
                   </View>
                 </View>
@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
   mainContent: {
     width,
     alignItems: "center",
-    backgroundColor: "transparent"
+    backgroundColor: "transparent",
+    paddingBottom: 50
   },
   card: {
     width: 300,
