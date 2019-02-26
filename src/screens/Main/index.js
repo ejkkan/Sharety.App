@@ -67,11 +67,11 @@ export default class Main extends Component {
     return (
       <GetCharities>
         {({ data, error, loading }) => {
-          if (loading) return <View />;
+          if (loading) return null;
           return (
             <View
               style={{
-                backgroundColor: "rgb(242,247,251)"
+                backgroundColor: "#e4f2f8"
               }}
             >
               <Interactable.View

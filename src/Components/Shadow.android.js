@@ -1,6 +1,6 @@
 import React from "react";
 import RNMaterialShadows from "react-native-material-shadows";
-import { View } from "react-native";
+import { View, TouchableOpacity } from "react-native";
 
 const Shadow = props => (
   <RNMaterialShadows
@@ -8,10 +8,10 @@ const Shadow = props => (
     shadowOffsetY={-15}
     shadowOffsetY={30}
     shadowAlpha={20}
-    calculateAsync={false}
-    showWhenAllReady={false}
-    animateShadow={false}
-    animationDuration={0}
+    calculateAsync={true}
+    showWhenAllReady={true}
+    animateShadow={true}
+    animationDuration={300}
     padding={0}
   >
     {props.children}

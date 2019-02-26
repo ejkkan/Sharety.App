@@ -6,12 +6,17 @@ import {
   createSwitchNavigator
 } from "react-navigation";
 
+import { View, TouchableOpacity } from "react-native";
+
 import Main from "./Main";
 import Login from "./Login";
 import Splash from "./Splash";
 import Account from "./Account";
+import UserInfo from "./UserInfo";
 
-import Apollo from '../Apollo'
+import TabBar from "../Components/TabBar";
+
+import Apollo from "../Apollo";
 import { fromBottom, fadeIn, fadeOut } from "react-navigation-transitions";
 
 const MainStack = createStackNavigator(
@@ -20,7 +25,7 @@ const MainStack = createStackNavigator(
   },
   {
     transitionConfig: () => fromBottom(1000),
-    headerMode: "none",
+    headerMode: "none"
     // drawerType: "slide",
     // gesturesEnabled: true,
     // overlayColor: "transparent",
@@ -64,22 +69,35 @@ const AccountStack = createStackNavigator(
   }
 );
 
+const UserInfoStack = createStackNavigator(
+  {
+    UserInfo: { screen: Apollo.withProvider(UserInfo) }
+  },
+  {
+    headerMode: "none",
+    transitionConfig: () => fadeIn(700)
+  }
+);
+
 const TabNavigator = createBottomTabNavigator(
   {
     Main: MainStack,
+    UserInfo: UserInfoStack,
     Account: AccountStack
   },
   {
     headerMode: "none",
     animationEnabled: true,
-    tabBarPosition: "bottom"
+    tabBarPosition: "bottom",
+    tabBarComponent: props => <TabBar {...props} />,
+    transitionConfig: () => fadeIn(700)
   }
 );
 
 const Root = createSwitchNavigator(
   {
-    Splash: SplashStack ,
-    Login:  LoginStack,
+    Splash: SplashStack,
+    Login: LoginStack,
     App: TabNavigator
   },
   {
