@@ -21,6 +21,7 @@
     "react": "16.6.3",
     "react-apollo": "^2.4.1",
     "react-native": "0.58.4",
+    "react-native-credit-card-input": "^0.4.1",
     "react-native-gesture-handler": "^1.0.15",
     "react-native-interactable": "^0.1.10",
     "react-native-linear-gradient": "^2.5.3",

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, ImageBackground, Dimensions } from "react-native";
 
 import Shadow from "../Shadow";
+import SubscribeButton from "../Button/subscribe";
 const { width, height } = Dimensions.get("window");
 
 export default class BigCard extends Component {
@@ -17,7 +18,29 @@ export default class BigCard extends Component {
           borderRadius={8}
           style={styles.card}
           source={{ uri: charity.largeImage }}
-        />
+        >
+          <View
+            style={{
+              flex: 1,
+              flexGrow: 1,
+              alignItems: "flex-end",
+              flexDirection: "row"
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-around",
+                padding: 10,
+                flexGrow: 1,
+                backgroundColor: "blue"
+              }}
+            >
+              <SubscribeButton charity={charity} />
+              <SubscribeButton charity={charity} />
+            </View>
+          </View>
+        </ImageBackground>
       </Shadow>
     );
   }

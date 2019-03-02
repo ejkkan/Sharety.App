@@ -10,8 +10,9 @@ import Main from "./Main";
 import Login from "./Login";
 import Splash from "./Splash";
 import Account from "./Account";
+import CreditCard from "./CreditCard";
 
-import Apollo from '../Apollo'
+import Apollo from "../Apollo";
 import { fromBottom, fadeIn, fadeOut } from "react-navigation-transitions";
 
 const MainStack = createStackNavigator(
@@ -20,7 +21,7 @@ const MainStack = createStackNavigator(
   },
   {
     transitionConfig: () => fromBottom(1000),
-    headerMode: "none",
+    headerMode: "none"
     // drawerType: "slide",
     // gesturesEnabled: true,
     // overlayColor: "transparent",
@@ -78,8 +79,8 @@ const TabNavigator = createBottomTabNavigator(
 
 const Root = createSwitchNavigator(
   {
-    Splash: SplashStack ,
-    Login:  LoginStack,
+    Splash: SplashStack,
+    Login: LoginStack,
     App: TabNavigator
   },
   {
