@@ -1,8 +1,8 @@
 import React from "react";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import gql from "graphql-tag";
 
-const GET_CHARITIES = gql`
+export const GET_CHARITIES = gql`
   query GET_CHARITIES {
     charities {
       id
@@ -10,12 +10,27 @@ const GET_CHARITIES = gql`
       description
       largeImage
     }
+    subscriptionItems {
+      id
+      charity {
+        id
+      }
+    }
+  }
+`;
+
+const UPDATE_LOCAL_CHARITIES = gql`
+  mutation UPDATE_LOCAL_CHARITIES($token: String!) {
+    applySubscriptionsToCharities(
+      charities: $charities
+      subscriptionItems: $subscriptionItems
+    ) @client
   }
 `;
 
 const GetCharities = props => (
   <Query {...props} query={GET_CHARITIES}>
-    {payload => props.children[0](payload)}
+    {payload => props.children(payload)}
   </Query>
 );
 

@@ -2,8 +2,11 @@ import React, { Component } from "react";
 import { StyleSheet, View, ImageBackground, Dimensions } from "react-native";
 
 import Shadow from "../Shadow";
+import DonateButton from "../Button/donate";
 import SubscribeButton from "../Button/subscribe";
+import UpdateSubscriptionButton from "../Button/update-subscription";
 const { width, height } = Dimensions.get("window");
+import { Text } from "react-native";
 
 export default class BigCard extends Component {
   constructor() {
@@ -12,6 +15,7 @@ export default class BigCard extends Component {
   render() {
     const { charity } = this.props;
     if (!charity) return null;
+    console.log("charity", charity.subscribing);
     return (
       <Shadow>
         <ImageBackground
@@ -36,8 +40,20 @@ export default class BigCard extends Component {
                 backgroundColor: "blue"
               }}
             >
-              <SubscribeButton charity={charity} />
-              <SubscribeButton charity={charity} />
+              <Text
+                style={{
+                  color: "white",
+                  fontSize: 25
+                }}
+              >
+                {charity.title}
+              </Text>
+              {charity.subscribing ? (
+                <UpdateSubscriptionButton charity={charity} />
+              ) : (
+                <SubscribeButton charity={charity} />
+              )}
+              <DonateButton charity={charity} />
             </View>
           </View>
         </ImageBackground>

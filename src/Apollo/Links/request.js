@@ -5,7 +5,7 @@ import Navigation from "../../utils/Navigation";
 
 const requestLink = new ApolloLink((operation, forward) => {
   return forward(operation).map(response => {
-    __DEV__ && console.log("[GRAPHQL RESPONSE]: ", response);
+    __DEV__ && console.log("[GRAPHQL RESPONSE]: ", operation);
     if (response.errors) {
       if (response.errors[0].path[0] === "autoSignin") {
         AsyncStorage.removeItem("token");
@@ -20,7 +20,29 @@ const requestLink = new ApolloLink((operation, forward) => {
     }
     if (response.data) {
       if (response.data.autoSignin) {
-        Navigation.navigate("App");
+        Navigation.navigate("Tabs");
+      }
+      if (response.data.charities && response.data.subscriptionItems) {
+        console.log("is HERE");
+        const formatted = response.data.charities.map(charity => {
+          return {
+            ...charity,
+            subscribing: !!response.data.subscriptionItems.find(
+              item => item.charity.id === charity.id
+            )
+          };
+        });
+
+        const newState = {
+          data: {
+            subscriptionItems: response.data.subscriptionItems,
+            charities: formatted
+          }
+        };
+        console.log("response", response);
+        console.log("newState", newState);
+        console.log("newState");
+        return newState;
       }
     }
     return response;

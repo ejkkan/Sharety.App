@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Interactable from "react-native-interactable";
 const { width, height } = Dimensions.get("window");
+import { Query } from "react-apollo";
 
 import SideMenu from "./side-menu";
 import Logo from "./logo";
@@ -18,6 +19,15 @@ import BigCard from "../../Components/Cards/big";
 import BigCarousel from "../../Components/Carousels/big";
 
 import GetCharities from "../../Components/GetCharities";
+import GetUser from "../../Components/GetUser";
+
+import { adopt } from "react-adopt";
+import { formatSubscribingCharities } from "../../utils/helpers";
+
+const Composed = adopt({
+  content: <GetCharities />,
+  user: <GetUser />
+});
 
 let lastIndex = 1;
 export default class Main extends Component {
@@ -65,13 +75,21 @@ export default class Main extends Component {
     //   })
 
     return (
-      <GetCharities>
-        {({ data, error, loading }) => {
-          if (loading) return <View />;
+      <Composed>
+        {({ content, user }) => {
+          if (content.loading) return null;
+          const charities = formatSubscribingCharities(
+            content.data.charities,
+            content.data.subscriptionItems
+          );
+          // console.log("fetchedCharities", fetchedCharities);
+          // const me = user.data.user;
+          // console.log("me", me);
+
           return (
             <View
               style={{
-                backgroundColor: "rgb(242,247,251)"
+                backgroundColor: "#e4f2f8"
               }}
             >
               <Interactable.View
@@ -116,10 +134,10 @@ export default class Main extends Component {
                           ]
                         }}
                       >
-                        <MainCard charity={data.charities[1]} />
+                        <MainCard charity={charities[1]} />
                       </Animated.View>
-                      <BigCarousel type="mixed" charities={data.charities} />
-                      <BigCarousel charities={data.charities.slice(1, 3)} />
+                      <BigCarousel type="mixed" charities={charities} />
+                      <BigCarousel charities={charities} />
                       {/* <BigCarousel charities={[data.charities[3]]} /> */}
                     </ScrollView>
                   </View>
@@ -133,8 +151,7 @@ export default class Main extends Component {
             </View>
           );
         }}
-        )
-      </GetCharities>
+      </Composed>
     );
   }
 }

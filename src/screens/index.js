@@ -6,11 +6,16 @@ import {
   createSwitchNavigator
 } from "react-navigation";
 
+import { View, TouchableOpacity } from "react-native";
+
 import Main from "./Main";
 import Login from "./Login";
 import Splash from "./Splash";
 import Account from "./Account";
 import CreditCard from "./CreditCard";
+import UserInfo from "./UserInfo";
+
+import TabBar from "../Components/TabBar";
 
 import Apollo from "../Apollo";
 import { fromBottom, fadeIn, fadeOut } from "react-navigation-transitions";
@@ -65,28 +70,66 @@ const AccountStack = createStackNavigator(
   }
 );
 
+const UserInfoStack = createStackNavigator(
+  {
+    UserInfo: { screen: Apollo.withProvider(UserInfo) }
+  },
+  {
+    headerMode: "none",
+    transitionConfig: () => fadeIn(700)
+  }
+);
+
+export const CreditCardStack = createStackNavigator(
+  {
+    CreditCard: {
+      screen: CreditCard
+    }
+  },
+  {
+    headerMode: "none",
+    transitionConfig: () => fadeIn(700)
+  }
+);
+
 const TabNavigator = createBottomTabNavigator(
   {
     Main: MainStack,
+    UserInfo: UserInfoStack,
     Account: AccountStack
   },
   {
     headerMode: "none",
     animationEnabled: true,
-    tabBarPosition: "bottom"
+    tabBarPosition: "bottom",
+    tabBarComponent: props => <TabBar {...props} />,
+    transitionConfig: () => fadeIn(700)
   }
 );
 
-const Root = createSwitchNavigator(
+const App = createSwitchNavigator(
   {
     Splash: SplashStack,
     Login: LoginStack,
-    App: TabNavigator
+    Tabs: TabNavigator
   },
   {
     initialRouteName: "Splash",
     transitionConfig: () => fadeIn(700),
     headerMode: "none"
+  }
+);
+
+const Root = createStackNavigator(
+  {
+    App: App,
+    CreditCard: Apollo.withProvider(CreditCard)
+  },
+  {
+    initialRouteName: "App",
+    transitionConfig: () => fadeIn(700),
+    headerMode: "none",
+    transparentCard: true
   }
 );
 

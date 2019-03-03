@@ -7,6 +7,13 @@ const Mutation = {
   login: (_, { token }, { cache }) => {
     AsyncStorage.setItem("token", token);
     Navigation.navigate("Main");
+  },
+  applySubscriptionsToCharities: (
+    _,
+    { charities, subscriptionItems },
+    { cache }
+  ) => {
+    console.log("applySubscriptionsToCharities", charities, subscriptionItems);
   }
 };
 

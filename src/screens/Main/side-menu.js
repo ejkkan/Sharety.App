@@ -17,29 +17,23 @@ class SideMenu extends Component {
     setTimeout(() => {
       this.setState({
         // text1: "Sharety",
-        text3: "Charity made"
+        text3: "Charity made Fun"
       });
-    }, 3000);
+    }, 2500);
     setTimeout(() => {
       this.setState({
         // text1: "Sharety",
-        text2: "Easy"
+        //text2: "Easy",
+        text3: "Sharing made Easy"
       });
-    }, 3500);
+    }, 5000);
     setTimeout(() => {
       this.setState({
         // text1: "Sharety",
-        text2: "Fun"
+        //text2: "Easy",
+        text3: "Sharing for Charity"
       });
-    }, 6000);
-    setTimeout(() => {
-      this.setState({
-        // text1: "Sharety",
-        // width: 91,
-        text3: "Charity made for",
-        text2: "You"
-      });
-    }, 9000);
+    }, 7500);
   }
 
   show = () =>
@@ -61,7 +55,7 @@ class SideMenu extends Component {
               {
                 translateX: this.props.translateX.interpolate({
                   inputRange: [-width * 0.7, 0],
-                  outputRange: [-70, 0]
+                  outputRange: [-100, 0]
                 })
               }
             ]
@@ -69,36 +63,25 @@ class SideMenu extends Component {
         ]}
       >
         <View>
-          <RNMorphingText
-            animationDuration={5000}
-            size={40}
-            color="black"
-            effect={"scale"}
-            fontWeight={"900"}
-            height={45}
-            value={this.state.text1}
+          <Text
+            style={{
+              fontSize: 35,
+              fontWeight: "bold",
+              fontFamily: "AvenirNext-Bold"
+            }}
           >
-            {this.state.text1}
-          </RNMorphingText>
+            Sharety
+          </Text>
           <View style={{ flexDirection: "row" }}>
             <RNMorphingText
-              animationDuration={2000}
-              size={11}
+              animationDuration={10000}
+              size={12}
               color="black"
+              font="serif"
               effect={"scale"}
-              height={25}
-              width={this.state.width}
+              height={20}
             >
               {this.state.text3}
-            </RNMorphingText>
-            <RNMorphingText
-              animationDuration={2000}
-              size={22}
-              color="black"
-              effect={"scale"}
-              height={30}
-            >
-              {this.state.text2}
             </RNMorphingText>
           </View>
         </View>
@@ -137,3 +120,7 @@ const styles = StyleSheet.create({
   }
 });
 export default SideMenu;
+//AvenirNext-Bold
+//DamascusBold
+//EuphemiaUCAS-Bold
+//Futura-CondensedExtraBold

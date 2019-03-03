@@ -2,10 +2,11 @@ import React from "react";
 import { Mutation, Query } from "react-apollo";
 import gql from "graphql-tag";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { GET_CHARITIES } from "../GetCharities";
 
-const SUBSCRIBE_TO_CHARITY = gql`
-  mutation SUBSCRIBE_TO_CHARITY($id: ID!, $quantity: Int!) {
-    subscribe(id: $id, quantity: $quantity) {
+const UPDATE_SUBSCIRPTION = gql`
+  mutation UPDATE_SUBSCIRPTION($id: ID!, $quantity: Int!) {
+    updateSubscription(id: $id, quantity: $quantity) {
       id
     }
   }
@@ -42,19 +43,19 @@ class SubscribeButton extends React.Component {
 
     return (
       <Mutation
-        mutation={SUBSCRIBE_TO_CHARITY}
+        mutation={UPDATE_SUBSCIRPTION}
         variables={{
           id: charity.id,
-          quantity: 140
+          quantity: 80
         }}
-        refetchQueries={[{ query: GET_USER_QUERY }]}
+        refetchQueries={[{ query: GET_CHARITIES }]}
       >
         {(subscribe, { loading }) => (
           <TouchableOpacity
             onPress={e => this.handleButtonClick(subscribe, charity)}
           >
             <View style={styles.button}>
-              <Text>Subscribe!</Text>
+              <Text>Update!</Text>
             </View>
           </TouchableOpacity>
         )}

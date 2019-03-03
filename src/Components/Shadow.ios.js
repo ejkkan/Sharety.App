@@ -15,9 +15,9 @@ const Shadow = props => (
 const config = {
   small: {
     shadowColor: "#000",
-    shadowOffset: { width: 5, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5
+    shadowOffset: { width: 3, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8
   },
   medium: {
     shadowColor: "#000",

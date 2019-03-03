@@ -119,7 +119,7 @@ export default class Mixed extends Component {
 const styles = StyleSheet.create({
   container: {
     width: width - 40,
-    height: width - 40,
+    height: 200,
     maxHeight: width - 40,
     borderRadius: 8,
     marginTop: 20,

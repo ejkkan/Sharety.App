@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-import GetUser from "../../Components/GetUser";
 import Auth from "../../Components/AuthCheck";
 
 export default class Page extends Component {
@@ -14,7 +13,7 @@ export default class Page extends Component {
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => {
-                  this.props.navigation.navigate("MAIN");
+                  this.props.navigation.navigate("App");
                 }}
               >
                 <Text style={styles.buttonText}>SPLASH</Text>

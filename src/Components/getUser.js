@@ -9,6 +9,9 @@ const GET_USER_QUERY = gql`
       email
       name
       permissions
+      subscription {
+        id
+      }
     }
   }
 `;
