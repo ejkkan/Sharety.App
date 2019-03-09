@@ -5,7 +5,7 @@ const { width } = Dimensions.get("window");
 import UserImage from "./user-image";
 import AchievementButton from "./AchievementButton";
 import UnlockButton from "./UnlockButton";
-import UserStats from "./user-stats";
+import UserStats from "../../Components/user-stats";
 import ThemePicker from "./theme-picker";
 
 export default class Page extends Component<Props> {

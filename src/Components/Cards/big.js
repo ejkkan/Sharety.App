@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ImageBackground, Dimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ImageBackground,
+  Dimensions,
+  TouchableOpacity
+} from "react-native";
 
 import Shadow from "../Shadow";
 import DonateButton from "../Button/donate";
@@ -7,6 +13,7 @@ import SubscribeButton from "../Button/subscribe";
 import UpdateSubscriptionButton from "../Button/update-subscription";
 const { width, height } = Dimensions.get("window");
 import { Text } from "react-native";
+import Navigation from "../../utils/Navigation";
 
 export default class BigCard extends Component {
   constructor() {
@@ -15,49 +22,59 @@ export default class BigCard extends Component {
   render() {
     const { charity } = this.props;
     if (!charity) return null;
-    console.log("charity", charity.subscribing);
     return (
-      <Shadow>
-        <ImageBackground
-          borderRadius={8}
-          style={styles.card}
-          source={{ uri: charity.largeImage }}
+      <View>
+        <Shadow>
+          <View style={[styles.card, { position: "absolute" }]} />
+        </Shadow>
+        <TouchableOpacity
+          onPress={() =>
+            Navigation.navigate("Charity", {
+              charity
+            })
+          }
         >
-          <View
-            style={{
-              flex: 1,
-              flexGrow: 1,
-              alignItems: "flex-end",
-              flexDirection: "row"
-            }}
+          <ImageBackground
+            borderRadius={8}
+            style={styles.card}
+            source={{ uri: charity.largeImage }}
           >
             <View
               style={{
-                flexDirection: "row",
-                justifyContent: "space-around",
-                padding: 10,
+                flex: 1,
                 flexGrow: 1,
-                backgroundColor: "blue"
+                alignItems: "flex-end",
+                flexDirection: "row"
               }}
             >
-              <Text
+              <View
                 style={{
-                  color: "white",
-                  fontSize: 25
+                  flexDirection: "row",
+                  justifyContent: "space-around",
+                  padding: 10,
+                  flexGrow: 1,
+                  backgroundColor: "blue"
                 }}
               >
-                {charity.title}
-              </Text>
-              {charity.subscribing ? (
-                <UpdateSubscriptionButton charity={charity} />
-              ) : (
-                <SubscribeButton charity={charity} />
-              )}
-              <DonateButton charity={charity} />
+                <Text
+                  style={{
+                    color: "white",
+                    fontSize: 25
+                  }}
+                >
+                  {charity.title}
+                </Text>
+                {charity.subscribing ? (
+                  <UpdateSubscriptionButton charity={charity} />
+                ) : (
+                  <SubscribeButton charity={charity} />
+                )}
+                <DonateButton charity={charity} />
+              </View>
             </View>
-          </View>
-        </ImageBackground>
-      </Shadow>
+          </ImageBackground>
+        </TouchableOpacity>
+      </View>
     );
   }
 }

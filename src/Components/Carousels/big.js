@@ -39,7 +39,7 @@ export default class MyCarousel extends Component {
         }}
         style={{ alignItems: "center", justifyContent: "center" }}
       >
-        <BigCard charity={item} />
+        <BigCard navigation={this.props.navigation} charity={item} />
       </View>
     );
   };

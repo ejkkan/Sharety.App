@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1044301384179",
+    "firebase_url": "https://sharety-e9cef.firebaseio.com",
+    "project_id": "sharety-e9cef",
+    "storage_bucket": "sharety-e9cef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044301384179:android:8093e08a11df85ca",
+        "android_client_info": {
+          "package_name": "com.sharety"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044301384179-jlkkdv4es6hfu1r11npqbo642i6108k5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARcKdH6QPlJBt6ynEtG26yB3XwO2czrg4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

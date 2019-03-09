@@ -5,7 +5,7 @@ import Navigation from "../../utils/Navigation";
 
 const requestLink = new ApolloLink((operation, forward) => {
   return forward(operation).map(response => {
-    __DEV__ && console.log("[GRAPHQL RESPONSE]: ", operation);
+    __DEV__ && console.log("[GRAPHQL RESPONSE]: ", response);
     if (response.errors) {
       if (response.errors[0].path[0] === "autoSignin") {
         AsyncStorage.removeItem("token");

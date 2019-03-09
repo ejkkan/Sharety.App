@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 
-import Shadow from "../../Components/Shadow";
+import Shadow from "./Shadow";
 import Icon from "react-native-vector-icons/FontAwesome";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -52,7 +52,7 @@ export default class UnlockButton extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 20,
-    width: 300,
+    width,
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",

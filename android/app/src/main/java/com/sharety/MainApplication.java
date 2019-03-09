@@ -3,6 +3,8 @@ package com.sharety;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.RNFirebasePackage;
+import com.cmcewen.blurview.BlurViewPackage;
 import com.horcrux.svg.SvgPackage;
 import ui.morphingtext.RNMorphingTextPackage;
 import com.wix.interactable.Interactable;
@@ -14,6 +16,8 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
+import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,16 +32,10 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new SvgPackage(),
-            new RNMorphingTextPackage(),
-            new Interactable(),
-            new RNMaterialShadowsPackage(),
-            new RNGestureHandlerPackage(),
-            new LinearGradientPackage(),
-            new VectorIconsPackage()
-      );
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebasePackage(), new BlurViewPackage(),
+          new SvgPackage(), new RNMorphingTextPackage(), new Interactable(), new RNMaterialShadowsPackage(),
+          new RNGestureHandlerPackage(), new LinearGradientPackage(), new VectorIconsPackage(),
+          new RNFirebaseAnalyticsPackage(), new RNFirebaseMessagingPackage());
     }
 
     @Override

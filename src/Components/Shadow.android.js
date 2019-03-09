@@ -13,6 +13,7 @@ const Shadow = props => (
     animateShadow={true}
     animationDuration={300}
     padding={0}
+    {...props}
   >
     {props.children}
   </RNMaterialShadows>

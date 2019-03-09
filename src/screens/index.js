@@ -14,6 +14,7 @@ import Splash from "./Splash";
 import Account from "./Account";
 import CreditCard from "./CreditCard";
 import UserInfo from "./UserInfo";
+import Charity from "./Charity";
 
 import TabBar from "../Components/TabBar";
 
@@ -22,11 +23,14 @@ import { fromBottom, fadeIn, fadeOut } from "react-navigation-transitions";
 
 const MainStack = createStackNavigator(
   {
-    Main: { screen: Apollo.withProvider(Main) }
+    Main: { screen: Apollo.withProvider(Main) },
+    Charity: Apollo.withProvider(Charity)
   },
   {
-    transitionConfig: () => fromBottom(1000),
-    headerMode: "none"
+    transitionConfig: () => fromBottom(700),
+    headerMode: "none",
+
+    transparentCard: true
     // drawerType: "slide",
     // gesturesEnabled: true,
     // overlayColor: "transparent",
@@ -37,6 +41,23 @@ const MainStack = createStackNavigator(
     //     marginVertical: 150
     //   }
     // }
+  }
+);
+
+export const CharityStack = createStackNavigator(
+  {
+    CreditCard: {
+      screen: Apollo.withProvider(Charity)
+    }
+  },
+  {
+    transparentCard: true,
+    mode: "modal",
+    headerMode: "none",
+    transitionConfig: () => fromBottom(700),
+    navigationOptions: {
+      tabBarVisible: false
+    }
   }
 );
 
@@ -102,6 +123,22 @@ const TabNavigator = createBottomTabNavigator(
     headerMode: "none",
     animationEnabled: true,
     tabBarPosition: "bottom",
+    tabBarOptions: {
+      inactiveBackgroundColor: "red",
+      activeBackgroundColor: "red",
+      showIcon: true,
+      showLabel: false,
+      lazyLoad: true,
+      style: {
+        backgroundColor: "transparent",
+        borderTopWidth: 0,
+        position: "absolute",
+        left: 50,
+        right: 50,
+        bottom: 20,
+        height: 100
+      }
+    },
     tabBarComponent: props => <TabBar {...props} />,
     transitionConfig: () => fadeIn(700)
   }
