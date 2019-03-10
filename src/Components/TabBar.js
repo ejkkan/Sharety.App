@@ -10,7 +10,6 @@ import {
 const { width } = Dimensions.get("window");
 import Shadow from "./Shadow";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { transform } from "babel-core";
 
 const hitSlop = {
   left: 10,
@@ -19,17 +18,12 @@ const hitSlop = {
   bottom: 30
 };
 
-export default class TabBar extends Component {
-  // left = new Animated.Value(0);
-  // translateY = new Animated.Value(-100);
+export default class FooterTabs extends Component {
+  left = new Animated.Value(0);
   componentDidMount() {
     setTimeout(() => {
       this.animate();
     }, 4000);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    console.log();
   }
 
   animate = index =>
@@ -50,14 +44,7 @@ export default class TabBar extends Component {
     const { navigation } = this.props;
 
     return (
-      <Animted.View
-        style={[
-          styles.container,
-          {
-            transform: [{ translateY: this.translateY }]
-          }
-        ]}
-      >
+      <View style={styles.container}>
         <View style={styles.tabBar}>
           <View style={styles.icomRow}>
             <View>
@@ -97,7 +84,7 @@ export default class TabBar extends Component {
                 {
                   height: 3,
                   width: 3,
-                  backgroundColor: "transparent"
+                  backgroundColor: "gray"
                 },
                 {
                   transform: [
@@ -110,7 +97,7 @@ export default class TabBar extends Component {
             />
           </View>
         </View>
-      </Animted.View>
+      </View>
     );
   }
 }
@@ -123,20 +110,18 @@ const getValue = index => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "transparent"
+    backgroundColor: "#e4f2f8"
   },
   tabBar: {
     height: 65,
     alignSelf: "stretch",
-    margin: 4,
+    margin: 5,
     marginTop: 0,
-    marginBottom: 8,
-    // borderBottomLeftRadius: 35,
-    // borderBottomRightRadius: 35,
-    // borderTopRightRadius: 12,
-    // borderTopLeftRadius: 12,
-    borderRadius: 10,
-    backgroundColor: "transparent",
+    borderBottomLeftRadius: 35,
+    borderBottomRightRadius: 35,
+    borderTopRightRadius: 12,
+    borderTopLeftRadius: 12,
+    backgroundColor: "white",
     paddingTop: 10,
     paddingHorizontal: 50
 

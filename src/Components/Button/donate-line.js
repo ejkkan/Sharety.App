@@ -24,7 +24,6 @@ const GET_USER_QUERY = gql`
 
 class SubscribeLineButton extends React.Component {
   handleButtonClick = (subscribe, e) => {
-    console.log("hej", this.props.charge);
     if (!this.props.charge) return;
     subscribe(e);
   };
@@ -43,7 +42,14 @@ class SubscribeLineButton extends React.Component {
         {(subscribe, { loading }) => (
           <TouchableOpacity onClick={e => this.handleButtonClick(subscribe, e)}>
             <View style={styles.button}>
-              <Text>Donate!</Text>
+              <Text
+                style={{
+                  color: "rgba(0,0,0,0.7)",
+                  fontSize: 20
+                }}
+              >
+                DONATE
+              </Text>
             </View>
           </TouchableOpacity>
         )}
@@ -54,12 +60,13 @@ class SubscribeLineButton extends React.Component {
 
 const styles = StyleSheet.create({
   button: {
-    height: 45,
+    flexGrow: 1,
+    height: 55,
+    paddingHorizontal: 40,
     margin: 20,
-    paddingHorizontal: 30,
-    borderRadius: 22.5,
-    borderWidth: 1,
-    borderColor: "black",
+    borderRadius: 30,
+    borderWidth: 2,
+    borderColor: "rgba(0,0,0,0.5)",
     backgroundColor: "transparent",
     alignItems: "center",
     justifyContent: "center"

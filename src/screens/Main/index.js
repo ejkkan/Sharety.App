@@ -138,6 +138,8 @@ export default class Main extends Component {
                       </Animated.View>
                       <BigCarousel type="mixed" charities={charities} />
                       <BigCarousel charities={charities} />
+                      <BigCarousel type="mixed" charities={charities} />
+                      <BigCarousel charities={charities} />
                       {/* <BigCarousel charities={[data.charities[3]]} /> */}
                     </ScrollView>
                   </View>
@@ -176,7 +178,7 @@ const styles = StyleSheet.create({
     width,
     alignItems: "center",
     backgroundColor: "transparent",
-    paddingBottom: 50
+    paddingBottom: 80
   },
   card: {
     width: 300,

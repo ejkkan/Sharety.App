@@ -4,10 +4,12 @@ import {
   StyleSheet,
   View,
   ImageBackground,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from "react-native";
 
 import Shadow from "../Shadow";
+import Navigation from "../../utils/Navigation";
 const { width, height } = Dimensions.get("window");
 
 export default class Mixed extends Component {
@@ -79,37 +81,58 @@ export default class Mixed extends Component {
       <View style={styles.container}>
         <View style={styles.column}>
           {charities[0] && (
-            <Shadow type="small" style={{ flex: 1 }}>
+            <TouchableOpacity
+              onPress={() =>
+                Navigation.navigate("Charity", {
+                  charity: charities[0]
+                })
+              }
+              style={{ flex: 1 }}
+            >
               <ImageBackground
                 borderRadius={8}
                 style={styles.smallCard}
                 source={{ uri: charities[0].largeImage }}
                 resizeMode="cover"
               />
-            </Shadow>
+            </TouchableOpacity>
           )}
           {charities[1] && (
-            <Shadow type="small" style={{ flex: 1, marginTop: 10 }}>
+            <TouchableOpacity
+              onPress={() =>
+                Navigation.navigate("Charity", {
+                  charity: charities[1]
+                })
+              }
+              style={{ flex: 1, marginTop: 10 }}
+            >
+              <Shadow type="small" style={[styles.tallCar]} />
               <ImageBackground
                 borderRadius={8}
                 style={styles.smallCard}
                 source={{ uri: charities[1].largeImage }}
                 resizeMode="cover"
               />
-            </Shadow>
+            </TouchableOpacity>
           )}
         </View>
         {charities[2] && (
-          <View style={styles.column}>
-            <Shadow type="small" style={{ flex: 1, marginLeft: 10 }}>
-              <ImageBackground
-                borderRadius={8}
-                style={styles.tallCard}
-                source={{ uri: charities[2].largeImage }}
-                resizeMode="cover"
-              />
-            </Shadow>
-          </View>
+          <TouchableOpacity
+            onPress={() =>
+              Navigation.navigate("Charity", {
+                charity: charities[2]
+              })
+            }
+            style={[styles.column, { marginLeft: 10 }]}
+          >
+            <Shadow type="small" style={[styles.tallCar]} />
+            <ImageBackground
+              borderRadius={8}
+              style={styles.tallCard}
+              source={{ uri: charities[2].largeImage }}
+              resizeMode="cover"
+            />
+          </TouchableOpacity>
         )}
       </View>
     );

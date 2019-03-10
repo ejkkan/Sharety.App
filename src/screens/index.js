@@ -55,9 +55,17 @@ export const CharityStack = createStackNavigator(
     mode: "modal",
     headerMode: "none",
     transitionConfig: () => fromBottom(700),
-    navigationOptions: {
-      tabBarVisible: false
-    }
+    tabBarOptions: {
+      // inactiveBackgroundColor: "red",
+      // activeBackgroundColor: "red",
+      showIcon: false,
+      // showLabel: false,
+      // lazyLoad: true,
+      style: {
+        height: 100
+      }
+    },
+    tabBarComponent: props => <TabBar {...props} />
   }
 );
 
@@ -124,20 +132,20 @@ const TabNavigator = createBottomTabNavigator(
     animationEnabled: true,
     tabBarPosition: "bottom",
     tabBarOptions: {
-      inactiveBackgroundColor: "red",
-      activeBackgroundColor: "red",
-      showIcon: true,
-      showLabel: false,
-      lazyLoad: true,
-      style: {
-        backgroundColor: "transparent",
-        borderTopWidth: 0,
-        position: "absolute",
-        left: 50,
-        right: 50,
-        bottom: 20,
-        height: 100
-      }
+      // inactiveBackgroundColor: "red",
+      // activeBackgroundColor: "red",
+      showIcon: true
+      // showLabel: false,
+      // lazyLoad: true,
+      // style: {
+      //   backgroundColor: "transparent",
+      //   borderTopWidth: 0,
+      //   position: "absolute",
+      //   left: 50,
+      //   right: 50,
+      //   bottom: 20,
+      //   height: 100
+      // }
     },
     tabBarComponent: props => <TabBar {...props} />,
     transitionConfig: () => fadeIn(700)
