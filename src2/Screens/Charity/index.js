@@ -1,4 +1,4 @@
-import React, { Component, useRef,useEffect, useState } from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -11,55 +11,40 @@ import {
   SafeAreaView,
   Platform
 } from "react-native";
+import { NavigationActions } from "react-navigation";
 
+import GetCharity from "../../Components/GetCharity";
 import UserStats from "../../Components/user-stats";
 import PhotoGrid from "../../Components/PhotoGrid";
-import DonateLineButton from "../../Components/Buttons/donate-line";
+import DonateLineButton from "../../Components/Button/donate-line";
 
 import { BlurView, VibrancyView } from "react-native-blur";
-import { Api } from '../../Api';
-
 const platform = Platform.OS;
 
 const { width, height } = Dimensions.get("window");
 
-const Charity = (props) => {
-  
-  const [viewRef, setViewRef] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [charity, setCharity] = useState(props.navigation.getParam("charity"));
-  const opacity = useRef(new Animated.Value(0)).current;
-  const backgroundImage = useRef(null);
+export default class Charity extends Component {
+  state = { viewRef: null };
+  opacity = new Animated.Value(0);
 
-  const imageLoaded = () => {
-    setViewRef(findNodeHandle(backgroundImage.current));
+  imageLoaded = () => {
+    this.setState({ viewRef: findNodeHandle(this.backgroundImage) });
   };
-
-  useEffect(() => {
-    Animated.timing(opacity, {
+  componentDidMount() {
+    // this.props.navigation.setParams({
+    //   tabBarOptions: {
+    //     showIcon: false
+    //   }
+    // });
+    Animated.timing(this.opacity, {
       toValue: 1,
       duration: 1000,
       useNativeDriver: true
     }).start();
-    getCharity();
-  },[]);
-  
-  const getCharity = async () => {
-    let charity = await Api.getCharity({id:props.navigation.getParam('charity',{id:""}).id});
-    setCharity(charity);
   }
-
-  const onPressDonate = () => {
-      
-  }
-  const onPressSubscribe = () => {
-    
-  }
-  
-
-  const renderAndroidBlur = () =>
+  renderAndroidBlur = () =>
     platform === "android" &&
-    viewRef && (
+    this.state.viewRef && (
       <BlurView
         style={{
           position: "absolute",
@@ -71,15 +56,15 @@ const Charity = (props) => {
           backgroundColor: "rgba(155,155,155,0.3)"
         }}
         // borderTopRightRadius={20}
-        viewRef={viewRef}
+        viewRef={this.state.viewRef}
         blurType="light"
         blurAmount={10}
       />
     );
 
-  const renderIoslur = () =>
+  renderIoslur = () =>
     platform === "ios" &&
-    viewRef && (
+    this.state.viewRef && (
       <BlurView
         style={{
           position: "absolute",
@@ -90,13 +75,21 @@ const Charity = (props) => {
           borderRadius: 15
         }}
         // borderTopRightRadius={20}
-        viewRef={viewRef}
+        viewRef={this.state.viewRef}
         blurType="light"
         blurAmount={9}
       />
     );
 
+  render() {
     return (
+      <GetCharity id={this.props.navigation.getParam("charity", { id: "" }).id}>
+        {({ data, loading }) => {
+          const { charity } = data;
+          if (loading) return null;
+          //return null;
+          console.log("viewRef", this.state.viewRef);
+          return (
             <View>
               <Animated.View
                 style={{
@@ -105,7 +98,7 @@ const Charity = (props) => {
                   top: 0,
                   width: width,
                   height: height,
-                  opacity: opacity
+                  opacity: this.opacity
                 }}
               />
               <ScrollView
@@ -115,16 +108,18 @@ const Charity = (props) => {
                 alwaysBounceVertica={true}
                 onScroll={e =>
                   e.nativeEvent.contentOffset.y < -0.5 &&
-                  props.navigation.goBack()
+                  this.props.navigation.goBack()
                 }
                 contentContainerStyle={styles.container}
               >
                 <ImageBackground
-                  ref={backgroundImage}
+                  ref={img => {
+                    this.backgroundImage = img;
+                  }}
                   borderRadius={20}
                   style={styles.card}
-                  onLayout={imageLoaded}
-                  onLoadEnd={imageLoaded}
+                  onLayout={this.imageLoaded}
+                  onLoadEnd={this.imageLoaded}
                   source={{
                     uri:
                       !loading && charity && charity.largeImage
@@ -132,10 +127,10 @@ const Charity = (props) => {
                         : ""
                   }}
                 >
-                  {renderIoslur()}
+                  {this.renderIoslur()}
                   <Animated.View
                     style={{
-                      opacity: opacity,
+                      opacity: this.opacity,
                       width: width - 10
                     }}
                   >
@@ -191,13 +186,13 @@ const Charity = (props) => {
                           justifyContent: "center"
                         }}
                       >
-                        <DonateLineButton text={"DONATE"} onCallback={onPressDonate}/>
-                        <DonateLineButton text={"SUBSCRIBE"} onCallback={onPressSubscribe}/>
+                        <DonateLineButton />
+                        <DonateLineButton />
                       </View>
                     </View>
                   </Animated.View>
                 </ImageBackground>
-                {renderAndroidBlur()}
+                {this.renderAndroidBlur()}
                 <View style={{ top: -50 }}>
                   <View
                     style={{
@@ -216,14 +211,17 @@ const Charity = (props) => {
                       charity.image,
                       charity.image
                     ]}
-                    onPressImage={uri => props.navigation.goBack()}
+                    onPressImage={uri => this.props.navigation.goBack()}
                   />
                 </View>
               </ScrollView>
             </View>
-    )
+          );
+        }}
+      </GetCharity>
+    );
   }
-
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -252,5 +250,3 @@ const images = [
   "https://cdn.pixabay.com/photo/2016/08/12/22/34/apple-1589869_960_720.jpg",
   "https://cdn.pixabay.com/photo/2016/08/12/22/34/apple-1589869_960_720.jpg"
 ];
-
-export default Charity;

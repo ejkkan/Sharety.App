@@ -8,9 +8,9 @@ import {
 } from "react-native";
 
 import Shadow from "../Shadow";
-//import DonateButton from "../Button/donate";
-//import SubscribeButton from "../Button/subscribe";
-// import UpdateSubscriptionButton from "../Button/update-subscription";
+import DonateButton from "../Button/donate";
+import SubscribeButton from "../Button/subscribe";
+import UpdateSubscriptionButton from "../Button/update-subscription";
 const { width, height } = Dimensions.get("window");
 import { Text } from "react-native";
 import Navigation from "../../utils/Navigation";
@@ -64,12 +64,12 @@ export default class BigCard extends Component {
                 >
                   {charity.title}
                 </Text>
-                {/* {charity.subscribing ? (
-                   <UpdateSubscriptionButton charity={charity} />
+                {charity.subscribing ? (
+                  <UpdateSubscriptionButton charity={charity} />
                 ) : (
-                   <SubscribeButton charity={charity} />
+                  <SubscribeButton charity={charity} />
                 )}
-                <DonateButton charity={charity} />  */}
+                <DonateButton charity={charity} />
               </View>
             </View>
           </ImageBackground>

@@ -1,162 +1,148 @@
-import React, { Component } from "react";
+import React, { Component, useState, useEffect, useRef } from "react";
 import {
   StyleSheet,
   View,
   Dimensions,
   Animated,
   ScrollView,
-  Vibration
+  Vibration,
+  Text
 } from "react-native";
 import Interactable from "react-native-interactable";
 const { width, height } = Dimensions.get("window");
-import { Query } from "react-apollo";
 
 import SideMenu from "./side-menu";
-import Logo from "./logo";
 import BackIcon from "./back-button";
-import MainCard from "../../Components/Cards/main";
-import BigCard from "../../Components/Cards/big";
-import BigCarousel from "../../Components/Carousels/big";
+import MainCard from "./main-card";
+import BigCarousel from "../../Components/Carousels/big-carousel";
+import { Api } from '../../Api';
+import Navigation from "../../utils/Navigation";
 
-import GetCharities from "../../Components/GetCharities";
-import GetUser from "../../Components/GetUser";
+// import { formatSubscribingCharities } from "../../utils/helpers";
 
-import { adopt } from "react-adopt";
-import { formatSubscribingCharities } from "../../utils/helpers";
-
-const Composed = adopt({
-  content: <GetCharities />,
-  user: <GetUser />
-});
 
 let lastIndex = 1;
-export default class Main extends Component {
-  constructor() {
-    super();
-    this.state = {
-      scrollable: false
-    };
-    this._scrollY = new Animated.Value(0);
-    this._deltaX = new Animated.Value(0);
-    this._cardFadeIn = new Animated.Value(0);
-  }
+const Main = (props) => {
+  
+  const container = useRef(null);
+  const backIcon = useRef(null);
 
-  componentDidMount() {
-    this.show();
-  }
 
-  show = () =>
-    Animated.timing(this._cardFadeIn, {
+  const [scrollable, setScrollable]  = useState(false);
+  const [charities, setCarities]  = useState([]);
+  const _cardFadeIn = useRef(new Animated.Value(0)).current;
+  const _deltaX = useRef(new Animated.Value(0)).current;
+  const _scrollY = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+   getCharities();
+  },[])
+
+  const getCharities = async () => {
+    let charities = await Api.getCharities();
+    setCarities(charities.data.charities);
+    show();
+  }
+  const show = () =>
+    Animated.timing(_cardFadeIn, {
       toValue: 1,
       duration: 700,
       delay: 1500,
       useNativeDriver: true
     }).start();
 
-  onSnap = phase => {
+  const onSnap = phase => {
     Vibration.vibrate(200);
     if (phase.nativeEvent.index === 0) {
-      this.backIcon.show();
-      this.setState({ scrollable: true });
+      backIcon.current.show();
+      setScrollable(true);
     }
     if (phase.nativeEvent.index === 1 && lastIndex === 0) {
-      this.backIcon.hide();
-      this.setState({ scrollable: false });
+      backIcon.current.hide();
+      setScrollable(false);
     }
     lastIndex = phase.nativeEvent.index;
   };
-  onBackPress = () => {
-    this.container.snapTo({ index: 1 });
+  const onBackPress = () => {
+    Navigation.navigate("PriceInput");
+    //container.current.snapTo({ index: 1 });
   };
-  render() {
-    // this._deltaX.interpolate({
-    //     inputRange: [-230, -230, -180, -180],
-    //     outputRange: [1, 1, 0, 0]
-    //   })
 
-    return (
-      <Composed>
-        {({ content, user }) => {
-          if (content.loading) return null;
-          const charities = formatSubscribingCharities(
-            content.data.charities,
-            content.data.subscriptionItems
-          );
-          // console.log("fetchedCharities", fetchedCharities);
-          // const me = user.data.user;
-          // console.log("me", me);
-
-          return (
-            <View
+    return (  
+      <View style={{ backgroundColor: "#e4f2f8", flex:1 }}>
+      {console.log('_cardFadeIn',charities)}
+            <Interactable.View
+              ref={container}
               style={{
-                backgroundColor: "#e4f2f8"
+                width: width * 1.7,
+                height,
+                backgroundColor: "transparent"
               }}
+              horizontalOnly={true}
+              animatedNativeDriver={true}
+              gravityPoints={[
+                {
+                  x: -width * 0.7,
+                  strength: 3000,
+                  falloff: 0,
+                  damping: 0.7
+                }
+              ]}
+              onSnap={onSnap}
+              animatedValueX={_deltaX}
+              snapPoints={[{ x: -width * 0.7 }, { x: 0 }]}
+              onSnapStart={() => console.log("spdiojfhs")}
+             
             >
-              <Interactable.View
-                ref={container => (this.container = container)}
-                style={{
-                  width: width * 1.7,
-                  height,
-                  backgroundColor: "transparent"
-                }}
-                horizontalOnly={true}
-                animatedNativeDriver={true}
-                gravityPoints={[
-                  { x: -width * 0.7, strength: 3000, falloff: 0, damping: 0.7 }
-                ]}
-                onSnap={this.onSnap}
-                animatedValueX={this._deltaX}
-                snapPoints={[{ x: -width * 0.7 }, { x: 0 }]}
-                onSnapStart={() => console.log("spdiojfhs")}
-              >
-                <View style={styles.page}>
-                  <View style={styles.sideMenu}>
-                    <SideMenu translateX={this._deltaX} />
-                  </View>
-                  <View style={{ flexDirection: "column", flex: 1 }}>
-                    <ScrollView
-                      scrollEnabled={this.state.scrollable}
-                      onScroll={Animated.event([
-                        { nativeEvent: { contentOffset: { y: this._scrollY } } }
-                      ])}
-                      contentContainerStyle={styles.mainContent}
-                    >
-                      <Animated.View
-                        style={{
-                          opacity: this._cardFadeIn,
-                          transform: [
-                            {
-                              translateX: this._cardFadeIn.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [100, 0]
-                              })
-                            }
-                          ]
-                        }}
-                      >
-                        <MainCard charity={charities[1]} />
-                      </Animated.View>
-                      <BigCarousel type="mixed" charities={charities} />
-                      <BigCarousel charities={charities} />
-                      <BigCarousel type="mixed" charities={charities} />
-                      <BigCarousel charities={charities} />
-                      {/* <BigCarousel charities={[data.charities[3]]} /> */}
-                    </ScrollView>
-                  </View>
+              <View style={styles.page}>
+                <View style={styles.sideMenu}>
+                  <SideMenu translateX={_deltaX} />
                 </View>
-              </Interactable.View>
-              {/* <Logo translateY={this._scrollY} /> */}
-              <BackIcon
-                onPress={this.onBackPress}
-                ref={backIcon => (this.backIcon = backIcon)}
-              />
-            </View>
-          );
-        }}
-      </Composed>
+                <View style={{ flexDirection: "column", flex: 1 }}>
+                {charities.length > 0 && <ScrollView
+                    scrollEnabled={scrollable}
+                    scrollEventThrottle={16}
+                    onScroll={Animated.event([
+                      {
+                        nativeEvent: { contentOffset: { y: _scrollY } }
+                      }
+                    ])}
+                    contentContainerStyle={styles.mainContent}
+                  >
+                 <Animated.View
+                      style={{
+                        opacity: _cardFadeIn,
+                        transform: [
+                          {
+                            translateX: _cardFadeIn.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [100, 0]
+                            })
+                          }
+                        ]
+                      }}
+                    >
+                    
+                      <MainCard charity={charities[1]} />
+                    </Animated.View>
+                    <BigCarousel type="mixed" charities={charities} />
+                    <BigCarousel charities={charities} />
+                    <BigCarousel type="mixed" charities={charities} />
+                    <BigCarousel charities={charities} />  
+                    {/* <BigCarousel charities={[data.charities[3]]} /> */}
+                  </ScrollView>}
+                </View>
+              </View>
+            </Interactable.View>
+            {/* <Logo translateY={this._scrollY} /> */}
+            <BackIcon
+              onPress={onBackPress}
+              ref={backIcon}
+            />
+        </View>
     );
   }
-}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -172,7 +158,7 @@ const styles = StyleSheet.create({
   sideMenu: {
     width: width * 0.7,
     height: 180,
-    height
+    height,
   },
   mainContent: {
     width,
@@ -201,3 +187,4 @@ const styles = StyleSheet.create({
     fontSize: 24
   }
 });
+ export default Main;

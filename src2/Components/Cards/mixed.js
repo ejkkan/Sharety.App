@@ -156,14 +156,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   smallCard: {
-    width: width / 3,
+    width: width / 2 - 25,
     flex: 1,
     flexGrow: 1,
     borderRadius: 8,
     elevation: 20
   },
   tallCard: {
-    width: width / 1.8 ,
+    width: width / 2 - 25,
     flex: 1,
     borderRadius: 8,
     elevation: 20

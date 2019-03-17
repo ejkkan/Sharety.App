@@ -10,7 +10,7 @@ import {
 const { width } = Dimensions.get("window");
 import Icon from "react-native-vector-icons/MaterialIcons";
 
-class BackButton extends Component {
+class SideMenu extends Component {
   animation = new Animated.Value(0);
   show = () =>
     Animated.timing(this.animation, {
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     borderRadius: 35
   }
 });
-export default BackButton;
+export default SideMenu;
