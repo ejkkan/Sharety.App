@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import { Api } from "../../Api";
-import { actions } from "../../Reducers/counter";
+import { counterActions } from "../../Reducers/counter";
 
 // import initStore from "../../Reducers/counter";
 //initStore();
@@ -25,9 +25,6 @@ export default class Login extends Component {
 
   login = async () => {
     let done = await Api.login(this.state);
-    // let charities = await Api.getCharities();
-    //console.log("charities", charities);
-    actions.getData();
   };
 
   render() {
@@ -54,7 +51,6 @@ export default class Login extends Component {
           placeholderTextColor="rgba(225,225,225,0.7)"
           secureTextEntry
         />
-
         <TouchableOpacity style={styles.buttonContainer} onPress={this.login}>
           <Text style={styles.buttonText}>LOGIN</Text>
         </TouchableOpacity>

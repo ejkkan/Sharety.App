@@ -15,34 +15,31 @@ import SideMenu from "./side-menu";
 import BackIcon from "./back-button";
 import MainCard from "./main-card";
 import BigCarousel from "../../Components/Carousels/big-carousel";
-import { Api } from '../../Api';
+import { Api } from "../../Api";
 import Navigation from "../../utils/Navigation";
 
 // import { formatSubscribingCharities } from "../../utils/helpers";
 
-
 let lastIndex = 1;
-const Main = (props) => {
-  
+const Main = props => {
   const container = useRef(null);
   const backIcon = useRef(null);
 
-
-  const [scrollable, setScrollable]  = useState(false);
-  const [charities, setCarities]  = useState([]);
+  const [scrollable, setScrollable] = useState(false);
+  const [charities, setCarities] = useState([]);
   const _cardFadeIn = useRef(new Animated.Value(0)).current;
   const _deltaX = useRef(new Animated.Value(0)).current;
   const _scrollY = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-   getCharities();
-  },[])
+    getCharities();
+  }, []);
 
   const getCharities = async () => {
     let charities = await Api.getCharities();
     setCarities(charities.data.charities);
     show();
-  }
+  };
   const show = () =>
     Animated.timing(_cardFadeIn, {
       toValue: 1,
@@ -64,85 +61,80 @@ const Main = (props) => {
     lastIndex = phase.nativeEvent.index;
   };
   const onBackPress = () => {
-    Navigation.navigate("PriceInput");
-    //container.current.snapTo({ index: 1 });
+    container.current.snapTo({ index: 1 });
   };
 
-    return (  
-      <View style={{ backgroundColor: "#e4f2f8", flex:1 }}>
-      {console.log('_cardFadeIn',charities)}
-            <Interactable.View
-              ref={container}
-              style={{
-                width: width * 1.7,
-                height,
-                backgroundColor: "transparent"
-              }}
-              horizontalOnly={true}
-              animatedNativeDriver={true}
-              gravityPoints={[
-                {
-                  x: -width * 0.7,
-                  strength: 3000,
-                  falloff: 0,
-                  damping: 0.7
-                }
-              ]}
-              onSnap={onSnap}
-              animatedValueX={_deltaX}
-              snapPoints={[{ x: -width * 0.7 }, { x: 0 }]}
-              onSnapStart={() => console.log("spdiojfhs")}
-             
-            >
-              <View style={styles.page}>
-                <View style={styles.sideMenu}>
-                  <SideMenu translateX={_deltaX} />
-                </View>
-                <View style={{ flexDirection: "column", flex: 1 }}>
-                {charities.length > 0 && <ScrollView
-                    scrollEnabled={scrollable}
-                    scrollEventThrottle={16}
-                    onScroll={Animated.event([
+  return (
+    <View style={{ backgroundColor: "#e4f2f8", flex: 1 }}>
+      {console.log("_cardFadeIn", charities)}
+      <Interactable.View
+        ref={container}
+        style={{
+          width: width * 1.7,
+          height,
+          backgroundColor: "transparent"
+        }}
+        horizontalOnly={true}
+        animatedNativeDriver={true}
+        gravityPoints={[
+          {
+            x: -width * 0.7,
+            strength: 3000,
+            falloff: 0,
+            damping: 0.7
+          }
+        ]}
+        onSnap={onSnap}
+        animatedValueX={_deltaX}
+        snapPoints={[{ x: -width * 0.7 }, { x: 0 }]}
+        onSnapStart={() => console.log("spdiojfhs")}
+      >
+        <View style={styles.page}>
+          <View style={styles.sideMenu}>
+            <SideMenu translateX={_deltaX} />
+          </View>
+          <View style={{ flexDirection: "column", flex: 1 }}>
+            {charities.length > 0 && (
+              <ScrollView
+                scrollEnabled={scrollable}
+                scrollEventThrottle={16}
+                onScroll={Animated.event([
+                  {
+                    nativeEvent: { contentOffset: { y: _scrollY } }
+                  }
+                ])}
+                contentContainerStyle={styles.mainContent}
+              >
+                <Animated.View
+                  style={{
+                    opacity: _cardFadeIn,
+                    transform: [
                       {
-                        nativeEvent: { contentOffset: { y: _scrollY } }
+                        translateX: _cardFadeIn.interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [100, 0]
+                        })
                       }
-                    ])}
-                    contentContainerStyle={styles.mainContent}
-                  >
-                 <Animated.View
-                      style={{
-                        opacity: _cardFadeIn,
-                        transform: [
-                          {
-                            translateX: _cardFadeIn.interpolate({
-                              inputRange: [0, 1],
-                              outputRange: [100, 0]
-                            })
-                          }
-                        ]
-                      }}
-                    >
-                    
-                      <MainCard charity={charities[1]} />
-                    </Animated.View>
-                    <BigCarousel type="mixed" charities={charities} />
-                    <BigCarousel charities={charities} />
-                    <BigCarousel type="mixed" charities={charities} />
-                    <BigCarousel charities={charities} />  
-                    {/* <BigCarousel charities={[data.charities[3]]} /> */}
-                  </ScrollView>}
-                </View>
-              </View>
-            </Interactable.View>
-            {/* <Logo translateY={this._scrollY} /> */}
-            <BackIcon
-              onPress={onBackPress}
-              ref={backIcon}
-            />
+                    ]
+                  }}
+                >
+                  <MainCard charity={charities[1]} />
+                </Animated.View>
+                <BigCarousel type="mixed" charities={charities} />
+                <BigCarousel charities={charities} />
+                <BigCarousel type="mixed" charities={charities} />
+                <BigCarousel charities={charities} />
+                {/* <BigCarousel charities={[data.charities[3]]} /> */}
+              </ScrollView>
+            )}
+          </View>
         </View>
-    );
-  }
-
+      </Interactable.View>
+      {/* <Logo translateY={this._scrollY} /> */}
+      <BackIcon onPress={onBackPress} ref={backIcon} />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -158,7 +150,7 @@ const styles = StyleSheet.create({
   sideMenu: {
     width: width * 0.7,
     height: 180,
-    height,
+    height
   },
   mainContent: {
     width,
@@ -187,4 +179,4 @@ const styles = StyleSheet.create({
     fontSize: 24
   }
 });
- export default Main;
+export default Main;

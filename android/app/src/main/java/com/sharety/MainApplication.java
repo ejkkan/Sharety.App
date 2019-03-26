@@ -3,6 +3,7 @@ package com.sharety;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.react.rnspinkit.RNSpinkitPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.cmcewen.blurview.BlurViewPackage;
 import com.horcrux.svg.SvgPackage;
@@ -32,7 +33,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebasePackage(), new BlurViewPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNSpinkitPackage(), new RNFirebasePackage(), new BlurViewPackage(),
           new SvgPackage(), new RNMorphingTextPackage(), new Interactable(), new RNMaterialShadowsPackage(),
           new RNGestureHandlerPackage(), new LinearGradientPackage(), new VectorIconsPackage(),
           new RNFirebaseAnalyticsPackage(), new RNFirebaseMessagingPackage());

@@ -83,32 +83,38 @@ const CREATE_PAYMENT_CARD_MUTATION = gql`
   }
 `;
 
-
-
 export const Api = {
   login: async variables => {
+    console.log("variables", variables);
     let response = await apolloFetch({ query: SIGNIN_MUTATION, variables });
     console.log("FROM SERVER", response.data.signin);
     return await AsyncStorage.setItem("token", response.data.signin);
   },
   autoSignin: async variables => {
-    return await apolloFetch({ query: AUTO_SIGNIN, variables });    
+    return await apolloFetch({ query: AUTO_SIGNIN, variables });
   },
   getCharities: async () => {
     return await apolloFetch({ query: GET_CHARITIES });
   },
   getCharity: async variables => {
     const response = await apolloFetch({ query: SINGlE_ITEM_QUERY, variables });
-    console.log('response',response)
+    console.log("response", response);
     return response.data.charity;
   },
   subscribe: async variables => {
-    let response = await apolloFetch({ query: SUBSCRIBE_TO_CHARITY, variables });
-    console.log('response',response)
+    console.log("variables", variables);
+    let response = await apolloFetch({
+      query: SUBSCRIBE_TO_CHARITY,
+      variables
+    });
+    console.log("response", response);
   },
   createPaymentCard: async variables => {
-    let response = await apolloFetch({ query: CREATE_PAYMENT_CARD_MUTATION, variables });
-    console.log('response',response)
+    let response = await apolloFetch({
+      query: CREATE_PAYMENT_CARD_MUTATION,
+      variables
+    });
+    console.log("response", response);
     return response;
   }
 };

@@ -1,4 +1,4 @@
-import React, { Component, useRef,useEffect, useState } from "react";
+import React, { Component, useRef, useEffect, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -15,16 +15,15 @@ import {
 import UserStats from "../../Components/user-stats";
 import PhotoGrid from "../../Components/PhotoGrid";
 import DonateLineButton from "../../Components/Buttons/donate-line";
-
+import Navigation from "../../utils/Navigation";
 import { BlurView, VibrancyView } from "react-native-blur";
-import { Api } from '../../Api';
+import { Api } from "../../Api";
 
 const platform = Platform.OS;
 
 const { width, height } = Dimensions.get("window");
 
-const Charity = (props) => {
-  
+const Charity = props => {
   const [viewRef, setViewRef] = useState(null);
   const [loading, setLoading] = useState(false);
   const [charity, setCharity] = useState(props.navigation.getParam("charity"));
@@ -42,20 +41,19 @@ const Charity = (props) => {
       useNativeDriver: true
     }).start();
     getCharity();
-  },[]);
-  
-  const getCharity = async () => {
-    let charity = await Api.getCharity({id:props.navigation.getParam('charity',{id:""}).id});
+  }, []);
+
+  const getCharity = async () => {
+    let charity = await Api.getCharity({
+      id: props.navigation.getParam("charity", { id: "" }).id
+    });
     setCharity(charity);
-  }
+  };
 
   const onPressDonate = () => {
-      
-  }
-  const onPressSubscribe = () => {
-    
-  }
-  
+    Navigation.navigate("PriceInput", { charity });
+  };
+  const onPressSubscribe = () => {};
 
   const renderAndroidBlur = () =>
     platform === "android" &&
@@ -96,134 +94,133 @@ const Charity = (props) => {
       />
     );
 
-    return (
-            <View>
-              <Animated.View
+  return (
+    <View>
+      <Animated.View
+        style={{
+          backgroundColor: "rgba(0,0,0,0.4)",
+          position: "absolute",
+          top: 0,
+          width: width,
+          height: height,
+          opacity: opacity
+        }}
+      />
+      <ScrollView
+        scrollEventThrottle={16}
+        showsVerticalScrollIndicator={false}
+        bounces={true}
+        alwaysBounceVertica={true}
+        onScroll={e =>
+          e.nativeEvent.contentOffset.y < -0.5 && props.navigation.goBack()
+        }
+        contentContainerStyle={styles.container}
+      >
+        <ImageBackground
+          ref={backgroundImage}
+          borderRadius={20}
+          style={styles.card}
+          onLayout={imageLoaded}
+          onLoadEnd={imageLoaded}
+          source={{
+            uri:
+              !loading && charity && charity.largeImage
+                ? charity.largeImage
+                : ""
+          }}
+        >
+          {renderIoslur()}
+          <Animated.View
+            style={{
+              opacity: opacity,
+              width: width - 10
+            }}
+          >
+            <View
+              style={{
+                height: height / 2,
+                alignSelf: "stretch",
+                justifyContent: "space-between",
+                alignItems: "center"
+              }}
+            >
+              <View
                 style={{
-                  backgroundColor: "rgba(0,0,0,0.4)",
-                  position: "absolute",
-                  top: 0,
-                  width: width,
-                  height: height,
-                  opacity: opacity
+                  padding: 30,
+                  marginTop: 20,
+                  flex: 1,
+                  justifyContent: "space-around"
                 }}
-              />
-              <ScrollView
-                scrollEventThrottle={16}
-                showsVerticalScrollIndicator={false}
-                bounces={true}
-                alwaysBounceVertica={true}
-                onScroll={e =>
-                  e.nativeEvent.contentOffset.y < -0.5 &&
-                  props.navigation.goBack()
-                }
-                contentContainerStyle={styles.container}
               >
-                <ImageBackground
-                  ref={backgroundImage}
-                  borderRadius={20}
-                  style={styles.card}
-                  onLayout={imageLoaded}
-                  onLoadEnd={imageLoaded}
-                  source={{
-                    uri:
-                      !loading && charity && charity.largeImage
-                        ? charity.largeImage
-                        : ""
+                <Text
+                  style={{
+                    fontSize: 40,
+                    textAlign: "center",
+                    marginBottom: 20,
+                    color: "rgb(0,0,0)"
                   }}
                 >
-                  {renderIoslur()}
-                  <Animated.View
-                    style={{
-                      opacity: opacity,
-                      width: width - 10
-                    }}
-                  >
-                    <View
-                      style={{
-                        height: height / 2,
-                        alignSelf: "stretch",
-                        justifyContent: "space-between",
-                        alignItems: "center"
-                      }}
-                    >
-                      <View
-                        style={{
-                          padding: 30,
-                          marginTop: 20,
-                          flex: 1,
-                          justifyContent: "space-around"
-                        }}
-                      >
-                        <Text
-                          style={{
-                            fontSize: 40,
-                            textAlign: "center",
-                            marginBottom: 20,
-                            color: "rgb(0,0,0)"
-                          }}
-                        >
-                          {charity.title}
-                        </Text>
-                        <Text
-                          style={{
-                            textAlign: "center",
-                            color: "rgb(0,0,0)"
-                          }}
-                        >
-                          Bacon ipsum dolor amet beef ribs landjaeger turkey,
-                          flank spare ribs short loin salami. Shank tenderloin
-                          landjaeger short loin andouille biltong. Burgdoggen
-                          beef meatloaf biltong pancetta, sirloin ribeye
-                          leberkas drumstick jerky. Jowl tri-tip venison,
-                          shoulder tenderloin brisket leberkas. Shank porchetta
-                          beef chuck venison, landjaeger pork belly pastrami.
-                          Andouille kevin cow, brisket frankfurter short loin
-                          ham hock ribeye spare ribs
-                        </Text>
-                      </View>
+                  {charity.title}
+                </Text>
+                <Text
+                  style={{
+                    textAlign: "center",
+                    color: "rgb(0,0,0)"
+                  }}
+                >
+                  Bacon ipsum dolor amet beef ribs landjaeger turkey, flank
+                  spare ribs short loin salami. Shank tenderloin landjaeger
+                  short loin andouille biltong. Burgdoggen beef meatloaf biltong
+                  pancetta, sirloin ribeye leberkas drumstick jerky. Jowl
+                  tri-tip venison, shoulder tenderloin brisket leberkas. Shank
+                  porchetta beef chuck venison, landjaeger pork belly pastrami.
+                  Andouille kevin cow, brisket frankfurter short loin ham hock
+                  ribeye spare ribs
+                </Text>
+                <DonateLineButton text={"DONATE"} onCallback={onPressDonate} />
+              </View>
 
-                      <View
-                        style={{
-                          flexDirection: "row",
-                          alignSelf: "stretch",
-                          marginBottom: 20,
-                          justifyContent: "center"
-                        }}
-                      >
-                        <DonateLineButton text={"DONATE"} onCallback={onPressDonate}/>
-                        <DonateLineButton text={"SUBSCRIBE"} onCallback={onPressSubscribe}/>
-                      </View>
-                    </View>
-                  </Animated.View>
-                </ImageBackground>
-                {renderAndroidBlur()}
-                <View style={{ top: -50 }}>
-                  <View
-                    style={{
-                      backgroundColor: "#e4f2f8"
-                    }}
-                  >
-                    <UserStats />
-                  </View>
-                  <PhotoGrid
-                    width={width - 10}
-                    source={[
-                      charity.image,
-                      charity.image,
-                      charity.image,
-                      charity.image,
-                      charity.image,
-                      charity.image
-                    ]}
-                    onPressImage={uri => props.navigation.goBack()}
-                  />
-                </View>
-              </ScrollView>
+              <View
+                style={{
+                  flexDirection: "row",
+                  alignSelf: "stretch",
+                  marginBottom: 20,
+                  justifyContent: "center"
+                }}
+              >
+                <DonateLineButton text={"DONATE"} onCallback={onPressDonate} />
+                {/* <DonateLineButton text={"SUBSCRIBE"} onCallback={onPressSubscribe}/> */}
+              </View>
             </View>
-    )
-  }
-
+          </Animated.View>
+        </ImageBackground>
+        {renderAndroidBlur()}
+        <View style={{ top: -50 }}>
+          <View
+            style={{
+              backgroundColor: "#e4f2f8"
+            }}
+          >
+            <UserStats />
+          </View>
+          <PhotoGrid
+            width={width - 10}
+            source={[
+              charity.image,
+              charity.image,
+              charity.image,
+              charity.image,
+              charity.image,
+              charity.image
+            ]}
+            onPressImage={uri => props.navigation.goBack()}
+          />
+          <DonateLineButton text={"DONATE"} onCallback={onPressDonate} />
+        </View>
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
