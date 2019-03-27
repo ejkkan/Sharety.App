@@ -81,6 +81,8 @@
 		E34BC76A2221785B00AE6FC3 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E34BC75B2221785B00AE6FC3 /* MaterialIcons.ttf */; };
 		E3572C772222C6A100179C1E /* LTMorphingLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3572C762222C6A100179C1E /* LTMorphingLabel.framework */; };
 		E3631C46223031A4001AB3B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E3631C45223031A3001AB3B7 /* GoogleService-Info.plist */; };
+		E3A6F5D8224C187700C6A99D /* libRCTVideo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6F5B5224C186E00C6A99D /* libRCTVideo.a */; };
+		E3A6F636224C1BF800C6A99D /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6F62B224C1BEF00C6A99D /* libRNCWebView.a */; };
 		E81EE5D22AD948A6BD193533 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD0CBEAF150443099E0FB079 /* libRNVectorIcons-tvOS.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
@@ -508,6 +510,27 @@
 			remoteGlobalIDString = 64D1BD361EEFE88700F3F219;
 			remoteInfo = "RNBlur-tvOS";
 		};
+		E3A6F5B4224C186E00C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6F594224C186D00C6A99D /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RCTVideo;
+		};
+		E3A6F5B6224C186E00C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6F594224C186D00C6A99D /* RCTVideo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 641E28441F0EEC8500443AF6;
+			remoteInfo = "RCTVideo-tvOS";
+		};
+		E3A6F62A224C1BEF00C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6F5F3224C1BEF00C6A99D /* RNCWebView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNCWebView;
+		};
 		E3D64B64223E88BE00CAAFE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A01C506BFE6746C382193291 /* RNGestureHandler.xcodeproj */;
@@ -618,6 +641,8 @@
 		E3572C762222C6A100179C1E /* LTMorphingLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LTMorphingLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3572C8D2222CACB00179C1E /* LTMorphingLabelDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LTMorphingLabelDemo.xcodeproj; path = "../node_modules/react-native-morphing-text/ios/LTMorphingLabel/LTMorphingLabelDemo.xcodeproj"; sourceTree = "<group>"; };
 		E3631C45223031A3001AB3B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E3A6F594224C186D00C6A99D /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
+		E3A6F5F3224C1BEF00C6A99D /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		E8BD79E5176941C5A4917EA9 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -639,6 +664,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3A6F636224C1BF800C6A99D /* libRNCWebView.a in Frameworks */,
+				E3A6F5D8224C187700C6A99D /* libRCTVideo.a in Frameworks */,
 				E33F5258224AA4E400F43792 /* libRNSpinkit.a in Frameworks */,
 				E33F524E224AA3F700F43792 /* libART.a in Frameworks */,
 				E3572C772222C6A100179C1E /* LTMorphingLabel.framework in Frameworks */,
@@ -855,6 +882,8 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E3A6F5F3224C1BEF00C6A99D /* RNCWebView.xcodeproj */,
+				E3A6F594224C186D00C6A99D /* RCTVideo.xcodeproj */,
 				E33F524F224AA4D800F43792 /* RNSpinkit.xcodeproj */,
 				E34BC7402220E44E00AE6FC3 /* BVLinearGradient.xcodeproj */,
 				E34BC7382220C59C00AE6FC3 /* Interactable.xcodeproj */,
@@ -1089,6 +1118,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E3A6F595224C186D00C6A99D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3A6F5B5224C186E00C6A99D /* libRCTVideo.a */,
+				E3A6F5B7224C186E00C6A99D /* libRCTVideo.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3A6F5F4224C1BEF00C6A99D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3A6F62B224C1BEF00C6A99D /* libRNCWebView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1268,6 +1314,10 @@
 					ProjectRef = 00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */;
 				},
 				{
+					ProductGroup = E3A6F595224C186D00C6A99D /* Products */;
+					ProjectRef = E3A6F594224C186D00C6A99D /* RCTVideo.xcodeproj */;
+				},
+				{
 					ProductGroup = 139FDEE71B06529A00C62182 /* Products */;
 					ProjectRef = 139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */;
 				},
@@ -1278,6 +1328,10 @@
 				{
 					ProductGroup = E38CA4DC222C6A3E001D1C17 /* Products */;
 					ProjectRef = 418EA1888BEF44F69E9F94E3 /* RNBlur.xcodeproj */;
+				},
+				{
+					ProductGroup = E3A6F5F4224C1BEF00C6A99D /* Products */;
+					ProjectRef = E3A6F5F3224C1BEF00C6A99D /* RNCWebView.xcodeproj */;
 				},
 				{
 					ProductGroup = E3631D05223036C1001AB3B7 /* Products */;
@@ -1721,6 +1775,27 @@
 			remoteRef = E38CA4E2222C6A3E001D1C17 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E3A6F5B5224C186E00C6A99D /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = E3A6F5B4224C186E00C6A99D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3A6F5B7224C186E00C6A99D /* libRCTVideo.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTVideo.a;
+			remoteRef = E3A6F5B6224C186E00C6A99D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3A6F62B224C1BEF00C6A99D /* libRNCWebView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNCWebView.a;
+			remoteRef = E3A6F62A224C1BEF00C6A99D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E3D64B65223E88BE00CAAFE1 /* libRNGestureHandler-tvOS.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1998,7 +2073,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharety;
 				PRODUCT_NAME = Sharety;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2029,7 +2104,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sharety;
 				PRODUCT_NAME = Sharety;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

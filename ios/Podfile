@@ -8,6 +8,7 @@ target 'Sharety' do
   # Pods for Sharety
   pod 'Firebase/Core', '~> 5.15.0'
   pod 'Firebase/Messaging', '~> 5.15.0'
+  pod 'Firebase/AdMob', '~> 5.15.0'
 
 end
 

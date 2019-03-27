@@ -3,6 +3,8 @@ package com.sharety;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
+import com.brentvatne.react.ReactVideoPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.cmcewen.blurview.BlurViewPackage;
@@ -19,6 +21,7 @@ import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
+import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,8 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new RNSpinkitPackage(), new RNFirebasePackage(), new BlurViewPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebaseAdMobPackage(), new RNCWebViewPackage(),
+          new ReactVideoPackage(), new RNSpinkitPackage(), new RNFirebasePackage(), new BlurViewPackage(),
           new SvgPackage(), new RNMorphingTextPackage(), new Interactable(), new RNMaterialShadowsPackage(),
           new RNGestureHandlerPackage(), new LinearGradientPackage(), new VectorIconsPackage(),
           new RNFirebaseAnalyticsPackage(), new RNFirebaseMessagingPackage());

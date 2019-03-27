@@ -3,14 +3,15 @@ import {
   StyleSheet,
   Text,
   View,
-  ImageBackground,
   Dimensions,
-  ScrollView,
-  findNodeHandle,
   Animated,
+  Platform,
+  ImageBackground,
+  findNodeHandle,
   SafeAreaView,
-  Platform
+  StatusBar
 } from "react-native";
+import Interactable from "react-native-interactable";
 
 import UserStats from "../../Components/user-stats";
 import PhotoGrid from "../../Components/PhotoGrid";
@@ -18,10 +19,16 @@ import DonateLineButton from "../../Components/Buttons/donate-line";
 import Navigation from "../../utils/Navigation";
 import { BlurView, VibrancyView } from "react-native-blur";
 import { Api } from "../../Api";
+import MovieList from "./movie-list";
 
 const platform = Platform.OS;
 
 const { width, height } = Dimensions.get("window");
+
+const Screen = {
+  width: Dimensions.get("window").width,
+  height: Dimensions.get("window").height - 75
+};
 
 const Charity = props => {
   const [viewRef, setViewRef] = useState(null);
@@ -29,17 +36,11 @@ const Charity = props => {
   const [charity, setCharity] = useState(props.navigation.getParam("charity"));
   const opacity = useRef(new Animated.Value(0)).current;
   const backgroundImage = useRef(null);
-
+  const container = useRef(null);
   const imageLoaded = () => {
     setViewRef(findNodeHandle(backgroundImage.current));
   };
-
   useEffect(() => {
-    Animated.timing(opacity, {
-      toValue: 1,
-      duration: 1000,
-      useNativeDriver: true
-    }).start();
     getCharity();
   }, []);
 
@@ -50,10 +51,16 @@ const Charity = props => {
     setCharity(charity);
   };
 
-  const onPressDonate = () => {
-    Navigation.navigate("PriceInput", { charity });
+  const snapTo = () => {
+    container.current.snapTo({ index: 1 });
   };
-  const onPressSubscribe = () => {};
+  const onSnap = e => {
+    const { index } = e.nativeEvent;
+    if (Object.keys(e.nativeEvent)[0] === "close") {
+      container.current.snapTo({ index: 6 });
+      props.navigation.goBack();
+    }
+  };
 
   const renderAndroidBlur = () =>
     platform === "android" &&
@@ -64,17 +71,16 @@ const Charity = props => {
           bottom: 0,
           left: 0,
           right: 0,
-          top: 0,
-          borderRadius: 15,
-          backgroundColor: "rgba(155,155,155,0.3)"
+          top: 0
+          //   backgroundColor: "rgba(155,155,155,0)"
         }}
         // borderTopRightRadius={20}
         viewRef={viewRef}
-        blurType="light"
+        blurType="dark"
+        blurRadius={9}
         blurAmount={10}
       />
     );
-
   const renderIoslur = () =>
     platform === "ios" &&
     viewRef && (
@@ -84,8 +90,7 @@ const Charity = props => {
           bottom: 0,
           left: 0,
           right: 0,
-          top: 0,
-          borderRadius: 15
+          top: 0
         }}
         // borderTopRightRadius={20}
         viewRef={viewRef}
@@ -95,147 +100,121 @@ const Charity = props => {
     );
 
   return (
-    <View>
-      <Animated.View
-        style={{
-          backgroundColor: "rgba(0,0,0,0.4)",
-          position: "absolute",
-          top: 0,
-          width: width,
-          height: height,
-          opacity: opacity
-        }}
-      />
-      <ScrollView
-        scrollEventThrottle={16}
-        showsVerticalScrollIndicator={false}
-        bounces={true}
-        alwaysBounceVertica={true}
-        onScroll={e =>
-          e.nativeEvent.contentOffset.y < -0.5 && props.navigation.goBack()
-        }
-        contentContainerStyle={styles.container}
-      >
-        <ImageBackground
-          ref={backgroundImage}
-          borderRadius={20}
-          style={styles.card}
-          onLayout={imageLoaded}
-          onLoadEnd={imageLoaded}
-          source={{
-            uri:
-              !loading && charity && charity.largeImage
-                ? charity.largeImage
-                : ""
+    <View style={styles.screen}>
+      <SafeAreaView>
+        <Interactable.View
+          style={{
+            width: width - 10,
+            marginLeft: 5
           }}
+          ref={container}
+          onLayout={snapTo}
+          verticalOnly={true}
+          snapPoints={[
+            { y: 40 },
+            { y: StatusBar.currentHeight },
+            { y: -Screen.height / 2 },
+            { y: -Screen.height / 3 },
+            { y: -Screen.height / 4 },
+            { y: -Screen.height },
+            { y: Screen.height }
+          ]}
+          alertAreas={[{ id: "close", influenceArea: { top: 85 } }]}
+          onAlert={onSnap}
+          boundaries={{ top: -height }}
+          initialPosition={{ y: 80 }}
+          animatedValueY={this._deltaY}
         >
-          {renderIoslur()}
-          <Animated.View
-            style={{
-              opacity: opacity,
-              width: width - 10
-            }}
-          >
-            <View
-              style={{
-                height: height / 2,
-                alignSelf: "stretch",
-                justifyContent: "space-between",
-                alignItems: "center"
+          <View style={styles.panel}>
+            <View style={styles.panelHeader}>
+              <View style={styles.panelHandle} />
+            </View>
+            <ImageBackground
+              ref={backgroundImage}
+              style={styles.card}
+              onLayout={imageLoaded}
+              onLoadEnd={imageLoaded}
+              source={{
+                uri:
+                  !loading && charity && charity.largeImage
+                    ? charity.largeImage
+                    : ""
               }}
             >
-              <View
-                style={{
-                  padding: 30,
-                  marginTop: 20,
-                  flex: 1,
-                  justifyContent: "space-around"
-                }}
-              >
-                <Text
-                  style={{
-                    fontSize: 40,
-                    textAlign: "center",
-                    marginBottom: 20,
-                    color: "rgb(0,0,0)"
-                  }}
-                >
-                  {charity.title}
-                </Text>
-                <Text
-                  style={{
-                    textAlign: "center",
-                    color: "rgb(0,0,0)"
-                  }}
-                >
-                  Bacon ipsum dolor amet beef ribs landjaeger turkey, flank
-                  spare ribs short loin salami. Shank tenderloin landjaeger
-                  short loin andouille biltong. Burgdoggen beef meatloaf biltong
-                  pancetta, sirloin ribeye leberkas drumstick jerky. Jowl
-                  tri-tip venison, shoulder tenderloin brisket leberkas. Shank
-                  porchetta beef chuck venison, landjaeger pork belly pastrami.
-                  Andouille kevin cow, brisket frankfurter short loin ham hock
-                  ribeye spare ribs
-                </Text>
-                <DonateLineButton text={"DONATE"} onCallback={onPressDonate} />
-              </View>
-
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignSelf: "stretch",
-                  marginBottom: 20,
-                  justifyContent: "center"
-                }}
-              >
-                <DonateLineButton text={"DONATE"} onCallback={onPressDonate} />
-                {/* <DonateLineButton text={"SUBSCRIBE"} onCallback={onPressSubscribe}/> */}
-              </View>
-            </View>
-          </Animated.View>
-        </ImageBackground>
-        {renderAndroidBlur()}
-        <View style={{ top: -50 }}>
-          <View
-            style={{
-              backgroundColor: "#e4f2f8"
-            }}
-          >
-            <UserStats />
+              {renderIoslur()}
+            </ImageBackground>
+            {renderAndroidBlur()}
+            <Text style={styles.panelTitle}>Watch To Donate</Text>
+            <MovieList />
+            <PhotoGrid
+              width={width - 20}
+              source={[
+                charity.image,
+                charity.image,
+                charity.image,
+                charity.image,
+                charity.image,
+                charity.image
+              ]}
+              // onPressImage={uri => props.navigation.goBack()}
+            />
           </View>
-          <PhotoGrid
-            width={width - 10}
-            source={[
-              charity.image,
-              charity.image,
-              charity.image,
-              charity.image,
-              charity.image,
-              charity.image
-            ]}
-            onPressImage={uri => props.navigation.goBack()}
-          />
-          <DonateLineButton text={"DONATE"} onCallback={onPressDonate} />
-        </View>
-      </ScrollView>
+        </Interactable.View>
+      </SafeAreaView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: "rgba(0,0,0,0.6)",
+    flex: 1
+  },
   container: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: "#e4f2f8",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    marginTop: 40,
     marginHorizontal: 5,
     width: width - 10
   },
   card: {
-    height: height / 2 + 25,
-    width: width - 10
+    height: width - 20,
+    width: width - 20
     // elevation: 20,
+  },
+  panel: {
+    height: Screen.height + 300,
+    backgroundColor: "#f0f0f5",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 5,
+    shadowOpacity: 0.4,
+    padding: 5,
+    paddingTop: 20
+  },
+  panelHeader: {
+    alignItems: "center"
+  },
+  panelHandle: {
+    width: 40,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#00000040",
+    marginBottom: 10
+  },
+  panelTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    margin: 10
+  },
+  panelSubtitle: {
+    fontSize: 14,
+    color: "gray",
+    height: 30,
+    marginBottom: 10
   }
 });
 

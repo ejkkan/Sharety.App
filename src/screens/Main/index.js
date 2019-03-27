@@ -6,7 +6,8 @@ import {
   Animated,
   ScrollView,
   Vibration,
-  Text
+  Text,
+  StatusBar
 } from "react-native";
 import Interactable from "react-native-interactable";
 const { width, height } = Dimensions.get("window");
@@ -66,6 +67,7 @@ const Main = props => {
 
   return (
     <View style={{ backgroundColor: "#e4f2f8", flex: 1 }}>
+      <StatusBar translucent={true} backgroundColor={"transparent"} />
       {console.log("_cardFadeIn", charities)}
       <Interactable.View
         ref={container}

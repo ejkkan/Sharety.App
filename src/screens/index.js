@@ -16,10 +16,10 @@ import { fromBottom, fadeIn } from "react-navigation-transitions";
 const App = createStackNavigator(
   {
     Main: { screen: Main },
-    Charity: {screen: Charity}
+    Charity: { screen: Charity }
   },
   {
-    transitionConfig: () => fromBottom(700),
+    transitionConfig: () => fadeIn(500),
     headerMode: "none",
 
     transparentCard: true
@@ -56,7 +56,6 @@ const SplashStack = createStackNavigator(
   }
 );
 
-
 export const CreditCardStack = createStackNavigator(
   {
     CreditCard: {
@@ -81,13 +80,12 @@ export const PriceStack = createStackNavigator(
   }
 );
 
-
 const Startup = createSwitchNavigator(
   {
     Splash: SplashStack,
     // Onboarding: Onboarding,
     Login: LoginStack,
-    App:App
+    App: App
   },
   {
     initialRouteName: "Splash",
@@ -101,7 +99,7 @@ const GlobalRoot = createStackNavigator(
     Startup: Startup,
     CreditCard: CreditCard,
     PriceInput: PriceInput,
-    Login: LoginStack,
+    Login: LoginStack
   },
   {
     initialRouteName: "Startup",
