@@ -20,6 +20,7 @@ import Navigation from "../../utils/Navigation";
 import { BlurView, VibrancyView } from "react-native-blur";
 import { Api } from "../../Api";
 import MovieList from "./movie-list";
+import SwipeOut from "./swipeout";
 
 const platform = Platform.OS;
 
@@ -144,6 +145,7 @@ const Charity = props => {
               {renderIoslur()}
             </ImageBackground>
             {renderAndroidBlur()}
+            <SwipeOut />
             <Text style={styles.panelTitle}>Watch To Donate</Text>
             <MovieList />
             <PhotoGrid
