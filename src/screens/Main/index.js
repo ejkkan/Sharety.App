@@ -19,6 +19,13 @@ import BigCarousel from "../../Components/Carousels/big-carousel";
 import { Api } from "../../Api";
 import Navigation from "../../utils/Navigation";
 
+import { RNNotificationBanner } from "react-native-notification-banner";
+
+import Icon from "react-native-vector-icons/FontAwesome";
+let copy = (
+  <Icon name="copy" size={24} color="#FFFFFF" family={"FontAwesome"} />
+);
+
 // import { formatSubscribingCharities } from "../../utils/helpers";
 
 let lastIndex = 1;
@@ -62,7 +69,17 @@ const Main = props => {
     lastIndex = phase.nativeEvent.index;
   };
   const onBackPress = () => {
-    container.current.snapTo({ index: 1 });
+    RNNotificationBanner.Show({
+      tintColor: "#f47141",
+      title: "Rump kevin pancetta",
+      duration: 5,
+      subTitle:
+        "Bacon ipsum dolor amet beef short loin frankfurter tri-tip t-bone jerky. Sausage swine pancetta kielbasa. Jowl leberkas fatback corned beef",
+      withIcon: true,
+      icon: copy
+    });
+
+    // container.current.snapTo({ index: 1 });
   };
 
   return (

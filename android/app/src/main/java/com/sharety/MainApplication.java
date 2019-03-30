@@ -3,6 +3,7 @@ package com.sharety;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import ui.notificationbanner.RNNotificationBannerPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
@@ -36,7 +37,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNFirebaseAdMobPackage(), new RNCWebViewPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNNotificationBannerPackage(), new RNFirebaseAdMobPackage(), new RNCWebViewPackage(),
           new ReactVideoPackage(), new RNSpinkitPackage(), new RNFirebasePackage(), new BlurViewPackage(),
           new SvgPackage(), new RNMorphingTextPackage(), new Interactable(), new RNMaterialShadowsPackage(),
           new RNGestureHandlerPackage(), new LinearGradientPackage(), new VectorIconsPackage(),
