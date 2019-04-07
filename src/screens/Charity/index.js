@@ -12,6 +12,7 @@ import {
   StatusBar
 } from "react-native";
 import Interactable from "react-native-interactable";
+import { RNFluidicSlider } from "react-native-fluidic-slider";
 
 import UserStats from "../../Components/user-stats";
 import PhotoGrid from "../../Components/PhotoGrid";
@@ -106,7 +107,8 @@ const Charity = props => {
         <Interactable.View
           style={{
             width: width - 10,
-            marginLeft: 5
+            marginLeft: 5,
+            height: 2000
           }}
           ref={container}
           onLayout={snapTo}
@@ -145,9 +147,12 @@ const Charity = props => {
               {renderIoslur()}
             </ImageBackground>
             {renderAndroidBlur()}
-            <SwipeOut />
+            <View style={{ height: 65 }}>
+              <SwipeOut />
+            </View>
             <Text style={styles.panelTitle}>Watch To Donate</Text>
             <MovieList />
+
             <PhotoGrid
               width={width - 20}
               source={[
@@ -186,7 +191,8 @@ const styles = StyleSheet.create({
     // elevation: 20,
   },
   panel: {
-    height: Screen.height + 300,
+    // minHeight: Screen.height
+    // flex: 1,
     backgroundColor: "#f0f0f5",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,

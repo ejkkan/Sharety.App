@@ -72,7 +72,7 @@ const Main = props => {
     RNNotificationBanner.Show({
       tintColor: "#f47141",
       title: "Rump kevin pancetta",
-      duration: 5,
+      duration: 5000,
       subTitle:
         "Bacon ipsum dolor amet beef short loin frankfurter tri-tip t-bone jerky. Sausage swine pancetta kielbasa. Jowl leberkas fatback corned beef",
       withIcon: true,
@@ -85,7 +85,7 @@ const Main = props => {
   return (
     <View style={{ backgroundColor: "#e4f2f8", flex: 1 }}>
       <StatusBar translucent={true} backgroundColor={"transparent"} />
-      {console.log("_cardFadeIn", charities)}
+
       <Interactable.View
         ref={container}
         style={{

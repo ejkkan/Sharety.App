@@ -21,7 +21,9 @@ const App = createStackNavigator(
   {
     transitionConfig: () => fadeIn(500),
     headerMode: "none",
-
+    defaultNavigationOptions: {
+      gesturesEnabled: false
+    },
     transparentCard: true
     // drawerType: "slide",
     // gesturesEnabled: true,

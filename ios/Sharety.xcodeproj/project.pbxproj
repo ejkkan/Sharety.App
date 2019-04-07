@@ -43,6 +43,7 @@
 		3F122CAEDF4E46ACB7A0FE89 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 55427822AFA4410480E6BB0D /* MaterialIcons.ttf */; };
 		4035E401409C4E39A9A62712 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB0E7F287D1D437588879125 /* Ionicons.ttf */; };
 		4341DE1C59B842E3BB845F22 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 54B98C395C48421681C5F931 /* Foundation.ttf */; };
+		48A8ED5CF9334C898FCE5060 /* libRNFluidicSlider.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 485E766B39FE422888683647 /* libRNFluidicSlider.a */; };
 		5050AA81DED34AC789A15112 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FB3AF12842E74FEDB3DF46B2 /* MaterialCommunityIcons.ttf */; };
 		56DC5C8DEB554857977606F0 /* libRNSVG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A08C70586D5418D8ECDD2AE /* libRNSVG.a */; };
 		5EB9C14CD8774D84994E4398 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AC80A41B9DBF47B48897F56F /* AntDesign.ttf */; };
@@ -85,6 +86,10 @@
 		E3A6F636224C1BF800C6A99D /* libRNCWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6F62B224C1BEF00C6A99D /* libRNCWebView.a */; };
 		E3A6FADA224F761200C6A99D /* BRYXBanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6FAD7224F760000C6A99D /* BRYXBanner.framework */; };
 		E3A6FADB224F761200C6A99D /* BRYXBanner.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6FAD7224F760000C6A99D /* BRYXBanner.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3A6FB5A224F79F600C6A99D /* fluid_slider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6FB55224F79A900C6A99D /* fluid_slider.framework */; };
+		E3A6FB5B224F79F600C6A99D /* fluid_slider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6FB55224F79A900C6A99D /* fluid_slider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E3A6FB5E224F7A0000C6A99D /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6FB59224F79A900C6A99D /* pop.framework */; };
+		E3A6FB5F224F7A0000C6A99D /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E3A6FB59224F79A900C6A99D /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7358437E01A41D784728FFE /* libRNNotificationBanner.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31A92DC16DD4459894EF343B /* libRNNotificationBanner.a */; };
 		E81EE5D22AD948A6BD193533 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD0CBEAF150443099E0FB079 /* libRNVectorIcons-tvOS.a */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
@@ -387,6 +392,13 @@
 			remoteGlobalIDString = 94DDAC5C1F3D024300EED511;
 			remoteInfo = "RNSVG-tvOS";
 		};
+		E33F2126225899C100911CA9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 157101E70BC44EB09FE4B141 /* RNNotificationBanner.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNNotificationBanner;
+		};
 		E33F5213224AA3F200F43792 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E33F520E224AA3F200F43792 /* ART.xcodeproj */;
@@ -555,6 +567,48 @@
 			remoteGlobalIDString = F7B9BA720524B18FAEE6488742E932E9;
 			remoteInfo = BRYXBanner;
 		};
+		E3A6FB3C224F796E00C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CAC91E244DC4797B425284F /* RNFluidicSlider.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFluidicSlider;
+		};
+		E3A6FB54224F79A900C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F9A3FE2CEE7F437DE13B1EBEED6F90E4;
+			remoteInfo = "fluid-slider";
+		};
+		E3A6FB56224F79A900C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C03F49F88CE481B103EE57F4969DB264;
+			remoteInfo = "Pods-RNFluidicSlider";
+		};
+		E3A6FB58224F79A900C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = DE08677D7A7BE8D0F0D606EDFF44EE17;
+			remoteInfo = pop;
+		};
+		E3A6FB5C224F79F600C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 54C52227D5027ED9DEB5035B601F179B;
+			remoteInfo = "fluid-slider";
+		};
+		E3A6FB60224F7A0000C6A99D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DCEE57111FA058322B1BAB03C02349F5;
+			remoteInfo = pop;
+		};
 		E3D64B64223E88BE00CAAFE1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A01C506BFE6746C382193291 /* RNGestureHandler.xcodeproj */;
@@ -571,6 +625,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				E3A6FB5B224F79F600C6A99D /* fluid_slider.framework in Embed Frameworks */,
+				E3A6FB5F224F7A0000C6A99D /* pop.framework in Embed Frameworks */,
 				E3A6FADB224F761200C6A99D /* BRYXBanner.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -612,6 +668,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		157101E70BC44EB09FE4B141 /* RNNotificationBanner.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNNotificationBanner.xcodeproj; path = "../../node_modules/react-native-notification-banner/ios/RNNotificationBanner.xcodeproj"; sourceTree = "<group>"; };
 		18B1237B85EB4C7C9C62FD07 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		2CAC91E244DC4797B425284F /* RNFluidicSlider.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFluidicSlider.xcodeproj; path = "../node_modules/react-native-fluidic-slider/ios/RNFluidicSlider.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Sharety-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sharety-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Sharety-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sharety-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -621,6 +678,7 @@
 		418EA1888BEF44F69E9F94E3 /* RNBlur.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBlur.xcodeproj; path = "../node_modules/react-native-blur/ios/RNBlur.xcodeproj"; sourceTree = "<group>"; };
 		4259164356244053BB524EAE /* libRNBlur.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBlur.a; sourceTree = "<group>"; };
 		44A8C842CE7F439E8A608694 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		485E766B39FE422888683647 /* libRNFluidicSlider.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFluidicSlider.a; sourceTree = "<group>"; };
 		54B98C395C48421681C5F931 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		55427822AFA4410480E6BB0D /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		5AB50FC6C8924E3FBB550172 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
@@ -671,6 +729,7 @@
 		E3A6F594224C186D00C6A99D /* RCTVideo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTVideo.xcodeproj; path = "../node_modules/react-native-video/ios/RCTVideo.xcodeproj"; sourceTree = "<group>"; };
 		E3A6F5F3224C1BEF00C6A99D /* RNCWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNCWebView.xcodeproj; path = "../node_modules/react-native-webview/ios/RNCWebView.xcodeproj"; sourceTree = "<group>"; };
 		E3A6FAD1224F760000C6A99D /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = "../../node_modules/react-native-notification-banner/ios/Pods/Pods.xcodeproj"; sourceTree = "<group>"; };
+		E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = "../node_modules/react-native-fluidic-slider/ios/Pods/Pods.xcodeproj"; sourceTree = "<group>"; };
 		E8BD79E5176941C5A4917EA9 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -705,6 +764,7 @@
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
 				E3A6FADA224F761200C6A99D /* BRYXBanner.framework in Frameworks */,
+				E3A6FB5A224F79F600C6A99D /* fluid_slider.framework in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
@@ -715,12 +775,14 @@
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				D480148D1DF14799BBBB9837 /* libRNVectorIcons.a in Frameworks */,
+				E3A6FB5E224F7A0000C6A99D /* pop.framework in Frameworks */,
 				84405B9546984E3C9119DD3E /* libRNMorphingText.a in Frameworks */,
 				56DC5C8DEB554857977606F0 /* libRNSVG.a in Frameworks */,
 				3F1019B4BDDA462C8F6B095E /* libRNBlur.a in Frameworks */,
 				AE41FC2ECC17411B0D2A3206 /* libPods-Sharety.a in Frameworks */,
 				D0CBE4214DDF4700912D1F9D /* libRNFirebase.a in Frameworks */,
 				E7358437E01A41D784728FFE /* libRNNotificationBanner.a in Frameworks */,
+				48A8ED5CF9334C898FCE5060 /* libRNFluidicSlider.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -912,6 +974,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				E3A6FB3E224F798E00C6A99D /* RNFluidicSlider */,
 				E3A6FAD0224F75F300C6A99D /* RNNotificationBanner */,
 				E3A6F5F3224C1BEF00C6A99D /* RNCWebView.xcodeproj */,
 				E3A6F594224C186D00C6A99D /* RCTVideo.xcodeproj */,
@@ -1024,6 +1087,7 @@
 				4259164356244053BB524EAE /* libRNBlur.a */,
 				DA93DF81EEB24067AEBDE76B /* libRNFirebase.a */,
 				31A92DC16DD4459894EF343B /* libRNNotificationBanner.a */,
+				485E766B39FE422888683647 /* libRNFluidicSlider.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1042,6 +1106,14 @@
 			children = (
 				E31A4B3D2225ED67006B89B9 /* libRNSVG.a */,
 				E31A4B3F2225ED67006B89B9 /* libRNSVG-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E33F20E8225899C100911CA9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E33F2127225899C100911CA9 /* libRNNotificationBanner.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1186,6 +1258,33 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E3A6FB39224F796E00C6A99D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3A6FB3D224F796E00C6A99D /* libRNFluidicSlider.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3A6FB3E224F798E00C6A99D /* RNFluidicSlider */ = {
+			isa = PBXGroup;
+			children = (
+				E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */,
+				2CAC91E244DC4797B425284F /* RNFluidicSlider.xcodeproj */,
+			);
+			name = RNFluidicSlider;
+			sourceTree = "<group>";
+		};
+		E3A6FB4F224F79A900C6A99D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3A6FB55224F79A900C6A99D /* fluid_slider.framework */,
+				E3A6FB57224F79A900C6A99D /* Pods_RNFluidicSlider.framework */,
+				E3A6FB59224F79A900C6A99D /* pop.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1222,6 +1321,8 @@
 			);
 			dependencies = (
 				E3A6FADD224F761200C6A99D /* PBXTargetDependency */,
+				E3A6FB5D224F79F600C6A99D /* PBXTargetDependency */,
+				E3A6FB61224F7A0000C6A99D /* PBXTargetDependency */,
 			);
 			name = Sharety;
 			productName = "Hello World";
@@ -1326,6 +1427,10 @@
 					ProjectRef = E3572C8D2222CACB00179C1E /* LTMorphingLabelDemo.xcodeproj */;
 				},
 				{
+					ProductGroup = E3A6FB4F224F79A900C6A99D /* Products */;
+					ProjectRef = E3A6FB4E224F79A900C6A99D /* Pods.xcodeproj */;
+				},
+				{
 					ProductGroup = E3A6FAD2224F760000C6A99D /* Products */;
 					ProjectRef = E3A6FAD1224F760000C6A99D /* Pods.xcodeproj */;
 				},
@@ -1394,12 +1499,20 @@
 					ProjectRef = 62B5B8BF18534CA1B06AA30A /* RNFirebase.xcodeproj */;
 				},
 				{
+					ProductGroup = E3A6FB39224F796E00C6A99D /* Products */;
+					ProjectRef = 2CAC91E244DC4797B425284F /* RNFluidicSlider.xcodeproj */;
+				},
+				{
 					ProductGroup = E31207C5220F01CB00F06244 /* Products */;
 					ProjectRef = A01C506BFE6746C382193291 /* RNGestureHandler.xcodeproj */;
 				},
 				{
 					ProductGroup = E3572C712222C65800179C1E /* Products */;
 					ProjectRef = F3ACE631F0CA4FFE8D19603D /* RNMorphingText.xcodeproj */;
+				},
+				{
+					ProductGroup = E33F20E8225899C100911CA9 /* Products */;
+					ProjectRef = 157101E70BC44EB09FE4B141 /* RNNotificationBanner.xcodeproj */;
 				},
 				{
 					ProductGroup = E33F5250224AA4D800F43792 /* Products */;
@@ -1705,6 +1818,13 @@
 			remoteRef = E31A4B3E2225ED67006B89B9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		E33F2127225899C100911CA9 /* libRNNotificationBanner.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNNotificationBanner.a;
+			remoteRef = E33F2126225899C100911CA9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E33F5214224AA3F200F43792 /* libART.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1864,6 +1984,34 @@
 			fileType = wrapper.framework;
 			path = Pods_RNNotificationBanner.framework;
 			remoteRef = E3A6FAD8224F760000C6A99D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3A6FB3D224F796E00C6A99D /* libRNFluidicSlider.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFluidicSlider.a;
+			remoteRef = E3A6FB3C224F796E00C6A99D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3A6FB55224F79A900C6A99D /* fluid_slider.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = fluid_slider.framework;
+			remoteRef = E3A6FB54224F79A900C6A99D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3A6FB57224F79A900C6A99D /* Pods_RNFluidicSlider.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_RNFluidicSlider.framework;
+			remoteRef = E3A6FB56224F79A900C6A99D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3A6FB59224F79A900C6A99D /* pop.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = pop.framework;
+			remoteRef = E3A6FB58224F79A900C6A99D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		E3D64B65223E88BE00CAAFE1 /* libRNGestureHandler-tvOS.a */ = {
@@ -2046,6 +2194,16 @@
 			name = BRYXBanner;
 			targetProxy = E3A6FADC224F761200C6A99D /* PBXContainerItemProxy */;
 		};
+		E3A6FB5D224F79F600C6A99D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "fluid-slider";
+			targetProxy = E3A6FB5C224F79F600C6A99D /* PBXContainerItemProxy */;
+		};
+		E3A6FB61224F7A0000C6A99D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = pop;
+			targetProxy = E3A6FB60224F7A0000C6A99D /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -2079,12 +2237,14 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
 				);
 				INFOPLIST_FILE = SharetyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2112,12 +2272,14 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
 				);
 				INFOPLIST_FILE = SharetyTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2150,6 +2312,8 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
 					"${BUILT_PRODUCTS_DIR}/BRYXBanner",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
+					"${BUILT_PRODUCTS_DIR}/fluid_slider",
 				);
 				INFOPLIST_FILE = Sharety/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2183,6 +2347,8 @@
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
 					"${BUILT_PRODUCTS_DIR}/BRYXBanner",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
+					"${BUILT_PRODUCTS_DIR}/fluid_slider",
 				);
 				INFOPLIST_FILE = Sharety/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2220,11 +2386,13 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
 				);
 				INFOPLIST_FILE = "Sharety-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2262,11 +2430,13 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
 				);
 				INFOPLIST_FILE = "Sharety-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2302,11 +2472,13 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
 				);
 				INFOPLIST_FILE = "Sharety-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -2342,11 +2514,13 @@
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
 					"$(SRCROOT)/../node_modules/react-native-notification-banner/ios",
+					"$(SRCROOT)/../node_modules/react-native-fluidic-slider/ios/**",
 				);
 				INFOPLIST_FILE = "Sharety-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (

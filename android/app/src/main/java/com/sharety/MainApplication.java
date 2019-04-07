@@ -3,6 +3,7 @@ package com.sharety;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import px.fluidicslider.RNFluidicSliderPackage;
 import ui.notificationbanner.RNNotificationBannerPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.brentvatne.react.ReactVideoPackage;
@@ -38,6 +39,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new RNFluidicSliderPackage(),
             new RNNotificationBannerPackage(), new RNFirebaseAdMobPackage(), new RNCWebViewPackage(),
           new ReactVideoPackage(), new RNSpinkitPackage(), new RNFirebasePackage(), new BlurViewPackage(),
           new SvgPackage(), new RNMorphingTextPackage(), new Interactable(), new RNMaterialShadowsPackage(),

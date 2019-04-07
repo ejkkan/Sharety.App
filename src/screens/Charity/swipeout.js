@@ -14,6 +14,7 @@ import ButtonComponent, {
   CircleButton,
   RoundButton
 } from "react-native-button-component";
+import { RNFluidicSlider } from "react-native-fluidic-slider";
 
 const { width } = Dimensions.get("window");
 
@@ -36,7 +37,8 @@ const SwipeOut = props => {
             right: 0,
             height: 65,
             flexDirection: "row",
-            alignItems: "center"
+            alignItems: "center",
+            backgroundColor: "red"
           }}
         >
           <Animated.View
@@ -58,20 +60,20 @@ const SwipeOut = props => {
               }
             ]}
           >
-            <TextInput
-              autoFocus
-              value={price}
-              style={{
-                height: 44,
-                fontSize: 30,
-                width: 100,
-                fontWeight: "bold",
-                borderWidth: 0,
-                paddingLeft: 5
-              }}
-              placeholder="500 kr"
-              onChangeText={setPrice}
-            />
+            <View
+              style={{ flex: 1, width: "100%", position: "absolute", top: -45 }}
+            >
+              <RNFluidicSlider
+                min={10}
+                max={180}
+                beginTracking={pos => {
+                  console.log("start tracking: " + pos);
+                }}
+                endTracking={pos => {
+                  console.log("end tracking: " + pos);
+                }}
+              />
+            </View>
           </Animated.View>
 
           <Animated.View
